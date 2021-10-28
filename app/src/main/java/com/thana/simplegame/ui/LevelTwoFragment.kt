@@ -1,24 +1,22 @@
-package com.thana.simplegame
+package com.thana.simplegame.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
-import com.thana.simplegame.databinding.FragmentLevelOneBinding
+import com.thana.simplegame.R
+import com.thana.simplegame.databinding.FragmentLevelTwoBinding
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
-import kotlinx.coroutines.delay
-import java.lang.Thread.sleep
 
-class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouchListener,
+class LevelTwoFragment : BaseFragment(R.layout.fragment_level_two), View.OnTouchListener,
     View.OnDragListener {
 
-    private val binding by viewBinding(FragmentLevelOneBinding::bind)
+    private val binding by viewBinding(FragmentLevelTwoBinding::bind)
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,13 +26,13 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
         binding.next.setOnClickListener {
             nextLevel()
         }
-
     }
 
     private fun nextLevel() {
-        val action = LevelOneFragmentDirections.actionLevelOneFragmentToLevelTwoFragment()
+        val action = LevelTwoFragmentDirections.actionLevelTwoFragmentToLevelThreeFragment()
         findNavController().navigate(action)
     }
+
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
@@ -58,7 +56,7 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
     private fun validateAnswer() {
         binding.submit.setOnClickListener {
             val input = binding.editText.text.toString().trim()
-            if (input == "7") {
+            if (input == "1") {
                 binding.right.visibility = View.VISIBLE
                 binding.wrong.visibility = View.GONE
             } else {
@@ -87,7 +85,7 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
             }
             DragEvent.ACTION_DROP -> {
                 view.alpha = 1.0f
-                val owner = view.parent as ViewGroup
+                val owner = binding.area
                 owner.removeView(view)
 
                 val container = layoutview as ConstraintLayout
