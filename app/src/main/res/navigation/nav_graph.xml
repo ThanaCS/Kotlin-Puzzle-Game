@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/levelOneFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.thana.simplegame.ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home"/>
+    <fragment
+        android:id="@+id/levelOneFragment"
+        android:name="com.thana.simplegame.LevelOneFragment"
+        android:label="fragment_level_one"
+        tools:layout="@layout/fragment_level_one" >
+        <action
+            android:id="@+id/action_levelOneFragment_to_levelTwoFragment"
+            app:destination="@id/levelTwoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelTwoFragment"
+        android:name="com.thana.simplegame.LevelTwoFragment"
+        android:label="fragment_level_two"
+        tools:layout="@layout/fragment_level_two" />
+
+</navigation>
