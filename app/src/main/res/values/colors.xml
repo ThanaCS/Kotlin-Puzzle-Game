@@ -14,4 +14,8 @@
     <color name="app_theme">#FF7700</color>
     <color name="app_theme_light">#FF9800</color>
     <color name="green">#8BC34A</color>
+    <color name="blue">#2196F3</color>
+    <color name="dark_green">#009688</color>
+    <color name="pink">#FA7AA5</color>
+    <color name="purple">#885CD6</color>
 </resources>
