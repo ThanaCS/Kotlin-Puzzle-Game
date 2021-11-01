@@ -1,4 +1,4 @@
-package com.thana.simplegame.ui
+package com.thana.simplegame
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,18 +6,15 @@ import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.thana.simplegame.R
-import com.thana.simplegame.databinding.FragmentHomeBinding
+import com.thana.simplegame.databinding.FragmentLevelFourBinding
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
 
-
-class HomeFragment : BaseFragment(R.layout.fragment_home), View.OnTouchListener,
+class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTouchListener,
     View.OnDragListener {
 
-    private val binding by viewBinding(FragmentHomeBinding::bind)
+    private val binding by viewBinding(FragmentLevelFourBinding::bind)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
@@ -27,8 +24,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), View.OnTouchListener,
     @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
         binding.untouchable.isEnabled = false
-        binding.sunglasses.setOnTouchListener(this)
-        binding.mask.setOnTouchListener(this)
+        binding.water.setOnTouchListener(this)
         binding.area.setOnDragListener(this)
     }
 
@@ -45,7 +41,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), View.OnTouchListener,
             DragEvent.ACTION_DROP -> {
                 view.alpha = 1.0f
 
-                checkIfMaskIsOnFace(dragevent)
+                checkIfTouchedText(dragevent)
 
                 if (!wrongArea(dragevent)) {
                     val owner = view.parent as ViewGroup
@@ -77,15 +73,16 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), View.OnTouchListener,
         return false
     }
 
-    private fun checkIfMaskIsOnFace(dragEvent: DragEvent) {
-        val faceXStart = binding.faceArea.x
-        val faceYStart = binding.faceArea.y
+    private fun checkIfTouchedText(dragEvent: DragEvent) {
 
-        val faceXEnd = faceXStart + binding.faceArea.width
-        val faceYEnd = faceYStart + binding.faceArea.height
+        val faceXStart = binding.waterText.x
+        val faceYStart = binding.waterText.y
+
+        val faceXEnd = faceXStart + binding.waterText.width
+        val faceYEnd = faceYStart + binding.waterText.height
 
         if (dragEvent.x in faceXStart..faceXEnd && dragEvent.y in faceYStart..faceYEnd) {
-            Toast.makeText(requireContext(), "Near the face", Toast.LENGTH_SHORT).show()
+            binding.right.visibility = View.VISIBLE
         }
 
     }

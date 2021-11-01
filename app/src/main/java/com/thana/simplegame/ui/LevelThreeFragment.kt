@@ -6,6 +6,7 @@ import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.fragment.findNavController
 import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentLevelThreeBinding
 import com.thana.simplegame.ui.common.BaseFragment
@@ -21,9 +22,15 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
         super.onViewCreated(view, savedInstanceState)
         setListeners()
         validateAnswer()
-
+        binding.next.setOnClickListener {
+            nextLevel()
+        }
     }
 
+    private fun nextLevel() {
+        val action = LevelThreeFragmentDirections.actionLevelThreeFragmentToLevelFourFragment()
+        findNavController().navigate(action)
+    }
     @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
         binding.pizza1.setOnTouchListener(this)
