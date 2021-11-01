@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/levelOneFragment">
+    app:startDestination="@id/levelFiveFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.thana.simplegame.ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/levelOneFragment"
         android:name="com.thana.simplegame.ui.LevelOneFragment"
         android:label="fragment_level_one"
-        tools:layout="@layout/fragment_level_one" >
+        tools:layout="@layout/fragment_level_one">
         <action
             android:id="@+id/action_levelOneFragment_to_levelTwoFragment"
             app:destination="@id/levelTwoFragment" />
@@ -23,7 +23,7 @@
         android:id="@+id/levelTwoFragment"
         android:name="com.thana.simplegame.ui.LevelTwoFragment"
         android:label="fragment_level_two"
-        tools:layout="@layout/fragment_level_two" >
+        tools:layout="@layout/fragment_level_two">
         <action
             android:id="@+id/action_levelTwoFragment_to_levelThreeFragment"
             app:destination="@id/levelThreeFragment" />
@@ -32,7 +32,7 @@
         android:id="@+id/levelThreeFragment"
         android:name="com.thana.simplegame.ui.LevelThreeFragment"
         android:label="fragment_level_three"
-        tools:layout="@layout/fragment_level_three" >
+        tools:layout="@layout/fragment_level_three">
         <action
             android:id="@+id/action_levelThreeFragment_to_levelFourFragment"
             app:destination="@id/levelFourFragment" />
@@ -42,5 +42,10 @@
         android:name="com.thana.simplegame.LevelFourFragment"
         android:label="fragment_level_four"
         tools:layout="@layout/fragment_level_four" />
+    <fragment
+        android:id="@+id/levelFiveFragment"
+        android:name="com.thana.simplegame.LevelFiveFragment"
+        android:label="fragment_level_five"
+        tools:layout="@layout/fragment_level_five" />
 
 </navigation>
