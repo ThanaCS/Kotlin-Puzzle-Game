@@ -1,4 +1,4 @@
-package com.thana.simplegame
+package com.thana.simplegame.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentLevelFourBinding
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding

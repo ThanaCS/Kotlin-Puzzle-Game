@@ -1,6 +1,8 @@
 package com.thana.simplegame.ui
 
 import android.annotation.SuppressLint
+import android.graphics.Canvas
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.DragEvent
 import android.view.MotionEvent
@@ -11,6 +13,7 @@ import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentLevelOneBinding
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
+import com.thana.simplegame.util.hideKeyboard
 
 class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouchListener,
     View.OnDragListener {
@@ -19,12 +22,11 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setListeners()
-        validateAnswer()
-
         binding.next.setOnClickListener {
             nextLevel()
         }
+        setListeners()
+        validateAnswer()
 
     }
 
@@ -35,12 +37,13 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
-        binding.pizza1.setOnTouchListener(this)
-        binding.pizza2.setOnTouchListener(this)
-        binding.hiddenPizza.setOnTouchListener(this)
-        binding.pizza4.setOnTouchListener(this)
-        binding.pizza5.setOnTouchListener(this)
-        binding.pizza6.setOnTouchListener(this)
+        binding.bee1.setOnTouchListener(this)
+        binding.bee2.setOnTouchListener(this)
+        binding.bee3.setOnTouchListener(this)
+        binding.bee4.setOnTouchListener(this)
+        binding.bee5.setOnTouchListener(this)
+        binding.bee6.setOnTouchListener(this)
+        binding.bee7.setOnTouchListener(this)
         binding.area.setOnDragListener(this)
         binding.input.setOnDragListener { _, _ ->
 
@@ -53,22 +56,20 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
     }
 
     private fun validateAnswer() {
+
         binding.submit.setOnClickListener {
             val input = binding.editText.text.toString().trim()
             if (input == "7") {
                 binding.right.visibility = View.VISIBLE
                 binding.wrong.visibility = View.GONE
+                binding.celebrate.visibility = View.VISIBLE
+                binding.celebrate.playAnimation()
+                binding.submit.isEnabled = false
             } else {
                 binding.wrong.visibility = View.VISIBLE
                 binding.right.visibility = View.GONE
             }
-        }
-        binding.right.setOnClickListener {
-            binding.right.visibility = View.GONE
-        }
-
-        binding.wrong.setOnClickListener {
-            binding.wrong.visibility = View.GONE
+            hideKeyboard()
         }
     }
 
@@ -81,6 +82,7 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
 
             DragEvent.ACTION_DRAG_ENTERED -> {
                 view.alpha = 0.3f
+                view.visibility = View.INVISIBLE
             }
             DragEvent.ACTION_DROP -> {
                 view.alpha = 1.0f
@@ -94,6 +96,11 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
 
                 container.addView(view)
                 view.visibility = View.VISIBLE
+            }
+            DragEvent.ACTION_DRAG_EXITED -> {
+                view.alpha = 1.0f
+                view.visibility = View.VISIBLE
+
             }
 
         }
@@ -110,9 +117,9 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
 
             view.startDragAndDrop(null, shadowBuilder, view, 0)
 
-            view.visibility = View.INVISIBLE
             true
         } else {
+
             false
         }
     }

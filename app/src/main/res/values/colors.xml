@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="app_theme">#25243C</color>
+    <color name="app_theme_light">#1D1588</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -9,13 +12,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#676767</color>
     <color name="white_background">#00FFFFFF</color>
-    <color name="light_background">#FFF2DF</color>
+    <color name="light_background">#F2F3FF</color>
     <color name="red">#C1FF0606</color>
-    <color name="app_theme">#FF7700</color>
-    <color name="app_theme_light">#FF9800</color>
     <color name="green">#8BC34A</color>
     <color name="blue">#2196F3</color>
     <color name="dark_green">#009688</color>
     <color name="pink">#FA7AA5</color>
     <color name="purple">#885CD6</color>
+    <color name="dark_background">#25243C</color>
+    <color name="card_background">#333151</color>
 </resources>

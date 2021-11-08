@@ -1,4 +1,4 @@
-package com.thana.simplegame
+package com.thana.simplegame.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
+import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentLevelFiveBinding
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
@@ -57,12 +57,8 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
                 && dragEvent.x in redBallXStart..redBallXEnd
                 && dragEvent.y in redBallYStart..redBallYEnd
             ) {
-                binding.redBall.setColorFilter(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.purple
-                    ), android.graphics.PorterDuff.Mode.SRC_IN
-                )
+                binding.redBall.glowColor= R.color.purple
+                binding.redBall.backColor= R.color.purple
                 binding.blueBall.visibility = View.INVISIBLE
                 binding.right.visibility = View.VISIBLE
             }
