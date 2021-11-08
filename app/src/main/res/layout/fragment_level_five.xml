@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/area"
+    android:layout_marginBottom="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_background"
-    tools:context=".LevelFiveFragment">
+    tools:context=".ui.LevelFiveFragment">
 
     <TextView
         android:id="@+id/textView2"
@@ -20,76 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/placeholder4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/circle"
-        android:text="@string/hello_blank_fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:id="@+id/placeholder1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/circle"
-        android:text="@string/hello_blank_fragment"
-        app:layout_constraintBottom_toTopOf="@+id/placeholder4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/green" />
-
-    <ImageView
-        android:id="@+id/placeholder2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/circle"
-        android:text="@string/hello_blank_fragment"
-        app:layout_constraintBottom_toTopOf="@+id/placeholder1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/dark_green" />
-
-    <ImageView
-        android:id="@+id/placeholder3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/circle"
-        android:text="@string/hello_blank_fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/placeholder4"
-        app:tint="@color/pink" />
-
-    <ImageView
-        android:id="@+id/red_ball"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/circle"
-        android:text="@string/hello_blank_fragment"
-        app:layout_constraintBottom_toTopOf="@+id/placeholder3"
-        app:layout_constraintEnd_toStartOf="@+id/placeholder1"
-        app:tint="@color/red" />
-
-    <ImageView
-        android:id="@+id/blue_ball"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/circle"
-        android:text="@string/hello_blank_fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/placeholder3"
-        app:tint="@color/blue" />
 
     <ImageView
         android:id="@+id/right"
@@ -99,5 +29,109 @@
         android:visibility="invisible"
         app:tint="@color/green" />
 
+    <com.smb.glowbutton.GlowButton
+        android:id="@+id/placeholder1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:gb_backgroundColor="#4CAF50"
+        app:gb_cornerRadius="15dp"
+        app:gb_drawablePadding="100dp"
+        app:gb_glowAnimationDuration="500"
+        app:gb_glowColor="#009688"
+        app:gb_rippleAnimationDuration="1500"
+        app:gb_rippleColor="@color/teal_700"
+        app:gb_rippleEnabled="true"
+        app:gb_text=""
+        app:gb_textColor="@color/light_background"
+        app:layout_constraintBottom_toTopOf="@+id/placeholder4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
+    <com.smb.glowbutton.GlowButton
+        android:id="@+id/placeholder2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:gb_backgroundColor="#FFC107"
+        app:gb_cornerRadius="15dp"
+        app:gb_drawablePadding="100dp"
+        app:gb_glowAnimationDuration="500"
+        app:gb_glowColor="#FFC107"
+        app:gb_rippleAnimationDuration="1500"
+        app:gb_rippleEnabled="true"
+        app:gb_text=""
+        app:gb_textColor="@color/light_background"
+        app:layout_constraintBottom_toTopOf="@+id/placeholder1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <com.smb.glowbutton.GlowButton
+        android:id="@+id/placeholder3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:gb_backgroundColor="#FFEB3B"
+        app:gb_cornerRadius="15dp"
+        app:gb_drawablePadding="100dp"
+        app:gb_glowAnimationDuration="500"
+        app:gb_glowColor="#FFEB3B"
+        app:gb_rippleAnimationDuration="1500"
+        app:gb_rippleEnabled="true"
+        app:gb_text=""
+        app:gb_textColor="@color/light_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/placeholder4"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <com.smb.glowbutton.GlowButton
+        android:id="@+id/placeholder4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:gb_backgroundColor="#E45988"
+        app:gb_cornerRadius="15dp"
+        app:gb_drawablePadding="100dp"
+        app:gb_glowAnimationDuration="500"
+        app:gb_glowColor="#F34C85"
+        app:gb_rippleAnimationDuration="1500"
+        app:gb_rippleEnabled="true"
+        app:gb_text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <com.smb.glowbutton.GlowButton
+        android:id="@+id/red_ball"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:gb_backgroundColor="#FF0000"
+        app:gb_cornerRadius="15dp"
+        app:gb_drawablePadding="100dp"
+        app:gb_glowAnimationDuration="500"
+        app:gb_glowColor="#FF0000"
+        app:gb_rippleAnimationDuration="1500"
+        app:gb_rippleEnabled="true"
+        app:gb_text=""
+        app:layout_constraintBottom_toTopOf="@+id/placeholder3"
+        app:layout_constraintEnd_toStartOf="@+id/placeholder1"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <com.smb.glowbutton.GlowButton
+        android:id="@+id/blue_ball"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:gb_backgroundColor="#2196F3"
+        app:gb_cornerRadius="15dp"
+        app:gb_drawablePadding="100dp"
+        app:gb_glowAnimationDuration="500"
+        app:gb_glowColor="#2196F3"
+        app:gb_rippleAnimationDuration="1500"
+        app:gb_rippleEnabled="true"
+        app:gb_text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/placeholder3"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
