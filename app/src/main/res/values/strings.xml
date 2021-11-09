@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Simple Game</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name" translatable="false">Simple Game</string>
+    <string name="question_level_one">How many bees are there?</string>
+    <string name="answer">A N S W E R</string>
+    <string name="hint_level_one">Have you tried touching the bees? they must sting...</string>
+    <string name="hint">HINT</string>
 </resources>

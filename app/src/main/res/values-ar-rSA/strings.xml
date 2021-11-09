@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simple Game</string>
+    <string name="question_level_one">كم عدد النحل هنا؟</string>
+    <string name="answer">الجواب</string>
+    <string name="hint_level_one">هل حاولت لمس النحل؟ يبدوا أنهم قد يلدغوا …</string>
+    <string name="hint">تلميح</string>
+</resources>
