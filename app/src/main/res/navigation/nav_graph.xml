@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.thana.simplegame.ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_levelOneFragment"
+            app:destination="@id/levelOneFragment" />
+    </fragment>
     <fragment
         android:id="@+id/levelOneFragment"
         android:name="com.thana.simplegame.ui.LevelOneFragment"
@@ -17,7 +21,9 @@
         tools:layout="@layout/fragment_level_one">
         <action
             android:id="@+id/action_levelOneFragment_to_levelTwoFragment"
-            app:destination="@id/levelTwoFragment" />
+            app:destination="@id/levelTwoFragment"
+            app:popUpTo="@id/levelOneFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/levelTwoFragment"
