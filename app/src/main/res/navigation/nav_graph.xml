@@ -32,7 +32,9 @@
         tools:layout="@layout/fragment_level_two">
         <action
             android:id="@+id/action_levelTwoFragment_to_levelThreeFragment"
-            app:destination="@id/levelThreeFragment" />
+            app:destination="@id/levelThreeFragment"
+            app:popUpTo="@id/levelTwoFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/levelThreeFragment"

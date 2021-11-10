@@ -1,70 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/area"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.slider.Slider
-        android:id="@+id/slider"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:valueFrom="0.0"
-        android:valueTo="100.0"
-        android:value="12.0"
-        app:labelBehavior="gone"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/card_background"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/area"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_margin="16dp">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/circle"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/circle"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                app:layout_constraintTop_toTopOf="@+id/imageView3"
+                app:tint="#FFEB3B" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/circle"
+                app:layout_constraintBottom_toTopOf="@+id/swipe_text"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/blue" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/slider"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/white"
+                android:value="12.0"
+                android:valueFrom="0.0"
+                android:valueTo="100.0"
+                app:labelBehavior="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/swipe_text" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/next"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:icon="@drawable/ic_next"
+                app:iconGravity="end"
+                app:iconTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/swipe_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/question_level_two"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wrong" />
+
+            <ImageView
+                android:id="@+id/wrong"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_wrong"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/next"
+                app:layout_constraintEnd_toEndOf="@+id/next"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/next"
+                app:tint="@color/red" />
+
+            <ImageView
+                android:id="@+id/right"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_check"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/next"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/next"
+                app:tint="@color/green" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/celebrate"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:lottie_autoPlay="false"
+        app:lottie_fileName="celebrate.json"
+        app:lottie_loop="true" />
 
-    <ImageView
-        android:id="@+id/right"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/ic_check"
-        android:visibility="invisible"
-        app:tint="@color/green"
-        tools:layout_editor_absoluteX="2dp" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/next"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
-        app:icon="@drawable/ic_next"
-        android:visibility="gone"
-        app:iconGravity="end"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/swipe_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
-        android:text="swipe to left"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:textStyle="bold"
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/card_background"
+        app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
-    <ImageView
-        android:id="@+id/wrong"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/ic_wrong"
-        android:visibility="invisible"
-        app:tint="@color/red" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/idea"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintEnd_toStartOf="@+id/expand"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"
+                android:text="@string/hint_level_two"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/expand"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ic_expand_arrow"
+                app:iconGravity="end"
+                app:iconTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/collapse"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:icon="@drawable/ic_collapse_arrow"
+                app:iconGravity="end"
+                app:iconTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
