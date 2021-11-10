@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/levelOneFragment">
+    app:startDestination="@id/levelThreeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -43,7 +43,9 @@
         tools:layout="@layout/fragment_level_three">
         <action
             android:id="@+id/action_levelThreeFragment_to_levelFourFragment"
-            app:destination="@id/levelFourFragment" />
+            app:destination="@id/levelFourFragment"
+            app:popUpTo="@id/levelThreeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/levelFourFragment"
