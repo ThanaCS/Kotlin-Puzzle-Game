@@ -6,6 +6,9 @@ import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.upstream.RawResourceDataSource
 import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentLevelFiveBinding
 import com.thana.simplegame.ui.common.BaseFragment
@@ -20,50 +23,94 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
-
+        showHint()
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
 
-        binding.blueBall.setOnTouchListener(this)
-        binding.redBall.setOnTouchListener(this)
-        binding.placeholder1.setOnTouchListener(this)
-        binding.placeholder2.setOnTouchListener(this)
-        binding.placeholder3.setOnTouchListener(this)
-        binding.placeholder4.setOnTouchListener(this)
+        binding.cow.setOnTouchListener(this)
+        binding.eggs.setOnTouchListener(this)
+        binding.food1.setOnTouchListener(this)
+        binding.food2.setOnTouchListener(this)
+        binding.flour.setOnTouchListener(this)
         binding.area.setOnDragListener(this)
 
     }
 
     private fun checkIfMixed(dragEvent: DragEvent, view: View) {
 
-        val blueBallXStart = binding.blueBall.x
-        val blueBallYStart = binding.blueBall.y
+        val cowXStart = binding.cow.x
+        val cowYStart = binding.cow.y
 
-        val blueBallXEnd = blueBallXStart + binding.blueBall.width
-        val blueBallYEnd = blueBallYStart + binding.blueBall.height
+        val cowXEnd = cowXStart + binding.cow.width
+        val cowYEnd = cowYStart + binding.cow.height
 
-        val redBallXStart = binding.redBall.x
-        val redBallYStart = binding.redBall.y
+        val flourXStart = binding.flour.x
+        val flourYStart = binding.flour.y
 
-        val redBallXEnd = redBallXStart + binding.redBall.width
-        val redBallYEnd = redBallYStart + binding.redBall.height
+        val flourXEnd = flourXStart + binding.flour.width
+        val flourYEnd = flourYStart + binding.flour.height
+
+        val eggXStart = binding.eggs.x
+        val eggYStart = binding.eggs.y
+
+        val eggXEnd = eggXStart + binding.eggs.width
+        val eggYEnd = eggYStart + binding.eggs.height
 
 
-        if (view.id == binding.redBall.id || view.id == binding.blueBall.id) {
-            if (dragEvent.x in blueBallXStart..blueBallXEnd
-                && dragEvent.y in blueBallYStart..blueBallYEnd
-                && dragEvent.x in redBallXStart..redBallXEnd
-                && dragEvent.y in redBallYStart..redBallYEnd
+        if (view.id == binding.cow.id || view.id == binding.flour.id || view.id == binding.eggs.id) {
+            if (dragEvent.x in cowXStart..cowXEnd
+                && dragEvent.y in cowYStart..cowYEnd
+                && dragEvent.x in flourXStart..flourXEnd
+                && dragEvent.y in flourYStart..flourYEnd
+                && dragEvent.x in flourXStart..eggXEnd
+                && dragEvent.y in flourYStart..eggYEnd
             ) {
-                binding.redBall.glowColor= R.color.purple
-                binding.redBall.backColor= R.color.purple
-                binding.blueBall.visibility = View.INVISIBLE
-                binding.right.visibility = View.VISIBLE
+
+                correctAnswer()
+
             }
         }
 
+
+    }
+
+    private fun showHint() {
+        binding.expand.setOnClickListener {
+            binding.hint.visibility = View.VISIBLE
+            binding.collapse.visibility = View.VISIBLE
+            binding.expand.visibility = View.INVISIBLE
+        }
+        binding.collapse.setOnClickListener {
+            binding.hint.visibility = View.GONE
+            binding.collapse.visibility = View.INVISIBLE
+            binding.expand.visibility = View.VISIBLE
+        }
+    }
+
+    private fun correctAnswer() {
+
+        val winAudio = ExoPlayer.Builder(requireContext()).build()
+
+        val winUri = RawResourceDataSource.buildRawResourceUri(R.raw.win)
+
+        winAudio.apply {
+            setMediaItem(MediaItem.fromUri(winUri))
+            prepare()
+        }
+
+        binding.pancake.visibility = View.VISIBLE
+        binding.food1.visibility = View.INVISIBLE
+        binding.food2.visibility = View.INVISIBLE
+        binding.cow.visibility = View.INVISIBLE
+        binding.eggs.visibility = View.INVISIBLE
+        binding.flour.visibility = View.INVISIBLE
+        binding.right.visibility = View.VISIBLE
+        binding.next.visibility = View.VISIBLE
+        binding.celebrate.visibility = View.VISIBLE
+        binding.celebrate.playAnimation()
+        winAudio.play()
 
     }
 

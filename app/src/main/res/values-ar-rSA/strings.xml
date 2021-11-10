@@ -15,4 +15,7 @@
     //lvl four
     <string name="question_level_four">اسقي النبتة</string>
     <string name="hint_level_four">اسقي "النبتة"</string>
+    //lvl five
+    <string name="question_level_five">اين الفطيرة؟</string>
+    <string name="hint_level_five">ربما يجب عليك تعلم الطبخ</string>
 </resources>

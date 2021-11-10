@@ -96,43 +96,45 @@
                 android:id="@+id/cake1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="28dp"
                 android:src="@drawable/cake"
                 app:layout_constraintBottom_toTopOf="@+id/input"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintVertical_bias="0.207" />
 
             <ImageView
                 android:id="@+id/cake2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="28dp"
                 android:src="@drawable/cake"
                 app:layout_constraintBottom_toTopOf="@+id/input"
                 app:layout_constraintEnd_toStartOf="@+id/cake1"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintVertical_bias="0.857" />
 
             <ImageView
                 android:id="@+id/cake3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
                 android:src="@drawable/cake"
                 app:layout_constraintBottom_toTopOf="@+id/input"
-                app:layout_constraintEnd_toStartOf="@+id/cake2"
                 app:layout_constraintStart_toEndOf="@+id/cake4"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintVertical_bias="0.194" />
 
             <ImageView
                 android:id="@+id/cake4"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="24dp"
                 android:src="@drawable/cake"
                 app:layout_constraintBottom_toTopOf="@+id/input"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintVertical_bias="1.0" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input"
@@ -168,8 +170,8 @@
 
             <ImageView
                 android:id="@+id/wrong"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@drawable/ic_wrong"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/next"

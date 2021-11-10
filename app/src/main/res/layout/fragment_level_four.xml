@@ -26,6 +26,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="16dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/water"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/untouchable"
@@ -114,8 +115,8 @@
 
             <ImageView
                 android:id="@+id/right"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@drawable/ic_check"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/next"
