@@ -106,6 +106,7 @@
                 android:id="@+id/cake2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginEnd="32dp"
                 android:src="@drawable/cake"
                 app:layout_constraintBottom_toTopOf="@+id/input"
                 app:layout_constraintEnd_toStartOf="@+id/cake1"
@@ -115,6 +116,8 @@
                 android:id="@+id/cake3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
                 android:src="@drawable/cake"
                 app:layout_constraintBottom_toTopOf="@+id/input"
                 app:layout_constraintEnd_toStartOf="@+id/cake2"
@@ -198,6 +201,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:lottie_autoPlay="false"
+        android:visibility="gone"
         app:lottie_fileName="celebrate.json"
         app:lottie_loop="true" />
 

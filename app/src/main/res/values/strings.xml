@@ -11,4 +11,7 @@
     //lvl three
     <string name="question_level_three">How many cakes are there?</string>
     <string name="hint_level_three">I love cake !!</string>
+    //lvl four
+    <string name="question_level_four">Water the plant</string>
+    <string name="hint_level_four">Water \"the plant\"</string>
 </resources>
