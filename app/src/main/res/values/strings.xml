@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name" translatable="false">Simple Game</string>
-    <string name="question_level_one">How many bees are there?</string>
     <string name="answer">A N S W E R</string>
-    <string name="hint_level_one">Have you tried touching the bees? they must sting...</string>
     <string name="hint">HINT</string>
+    //lvl one
+    <string name="question_level_one">How many bees are there?</string>
+    <string name="hint_level_one">Have you tried touching the bees? they must sting…</string>
+    //lvl two
+    <string name="question_level_two">swipe to left</string>
+    <string name="hint_level_two">Maybe you should read carefully</string>
 </resources>
