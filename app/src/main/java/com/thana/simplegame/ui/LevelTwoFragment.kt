@@ -44,7 +44,6 @@ class LevelTwoFragment : BaseFragment(R.layout.fragment_level_two) {
         findNavController().navigate(action)
     }
 
-
     private fun validateAnswer() {
 
         val loseAudio = ExoPlayer.Builder(requireContext()).build()
@@ -72,6 +71,7 @@ class LevelTwoFragment : BaseFragment(R.layout.fragment_level_two) {
                 binding.right.visibility = View.VISIBLE
                 binding.wrong.visibility = View.INVISIBLE
                 binding.next.visibility = View.VISIBLE
+                binding.celebrate.visibility = View.VISIBLE
                 binding.celebrate.playAnimation()
 
                 slider.value = 0.0f

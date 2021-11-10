@@ -12,4 +12,7 @@
     //lvl three
     <string name="question_level_three">كم عدد الكيك هنا؟</string>
     <string name="hint_level_three">احب الكيك !!</string>
+    //lvl four
+    <string name="question_level_four">اسقي النبتة</string>
+    <string name="hint_level_four">اسقي "النبتة"</string>
 </resources>
