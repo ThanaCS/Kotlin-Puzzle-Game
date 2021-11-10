@@ -9,4 +9,7 @@
     //lvl two
     <string name="question_level_two">اسحب لليسار</string>
     <string name="hint_level_two">ربما عليك القراءة بتمعن</string>
+    //lvl three
+    <string name="question_level_three">كم عدد الكيك هنا؟</string>
+    <string name="hint_level_three">احب الكيك !!</string>
 </resources>

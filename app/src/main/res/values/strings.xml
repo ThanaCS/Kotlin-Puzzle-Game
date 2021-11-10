@@ -8,4 +8,7 @@
     //lvl two
     <string name="question_level_two">swipe to left</string>
     <string name="hint_level_two">Maybe you should read carefully</string>
+    //lvl three
+    <string name="question_level_three">How many cakes are there?</string>
+    <string name="hint_level_three">I love cake !!</string>
 </resources>
