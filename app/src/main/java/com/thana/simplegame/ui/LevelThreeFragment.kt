@@ -11,6 +11,7 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
 import com.thana.simplegame.R
+import com.thana.simplegame.data.common.SharedPreferences
 import com.thana.simplegame.databinding.FragmentLevelThreeBinding
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
@@ -25,8 +26,13 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
     private lateinit var winAudio: ExoPlayer
     private lateinit var loseAudio: ExoPlayer
 
+    private lateinit var sharedPreferences: SharedPreferences
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        sharedPreferences = SharedPreferences(requireContext())
+
         binding.next.setOnClickListener {
             nextLevel()
         }
@@ -108,6 +114,10 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
                 if (::winAudio.isInitialized)
                     winAudio.play()
 
+                if (sharedPreferences.getScore() < 3) {
+                    sharedPreferences.addScore()
+                }
+
             } else {
                 binding.wrong.visibility = View.VISIBLE
                 binding.right.visibility = View.GONE
@@ -148,7 +158,7 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
                 val owner = binding.area
                 owner.removeView(view)
 
-                if(layoutview.id != binding.dinosaur.id) {
+                if (layoutview.id != binding.dinosaur.id) {
                     val container = layoutview as ConstraintLayout
 
                     view.x = dragevent.x - (view.width / 2)
@@ -156,7 +166,8 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
 
                     container.addView(view)
                     view.visibility = View.VISIBLE
-                }}
+                }
+            }
             DragEvent.ACTION_DRAG_EXITED -> {
                 view.alpha = 1.0f
                 view.visibility = View.VISIBLE

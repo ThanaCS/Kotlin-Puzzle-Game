@@ -25,4 +25,9 @@
         <item name="android:background">@drawable/button_3d_image</item>
 
     </style>
+
+    <style name="Button3DYellow" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">@drawable/button_3d_image_yellow</item>
+
+    </style>
 </resources>

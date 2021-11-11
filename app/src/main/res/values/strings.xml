@@ -2,6 +2,7 @@
     <string name="app_name" translatable="false">Simple Game</string>
     <string name="answer">A N S W E R</string>
     <string name="hint">HINT</string>
+    <string name="level">Level </string>
     //lvl one
     <string name="question_level_one">How many bees are there?</string>
     <string name="hint_level_one">Have you tried touching the bees? they must sting…</string>
