@@ -7,6 +7,7 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
 import com.thana.simplegame.R
+import com.thana.simplegame.data.common.SharedPreferences
 import com.thana.simplegame.databinding.FragmentLevelTwoBinding
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
@@ -15,8 +16,13 @@ class LevelTwoFragment : BaseFragment(R.layout.fragment_level_two) {
 
     private val binding by viewBinding(FragmentLevelTwoBinding::bind)
 
+    private lateinit var sharedPreferences: SharedPreferences
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        sharedPreferences = SharedPreferences(requireContext())
+
         binding.next.setOnClickListener {
             nextLevel()
         }
@@ -77,6 +83,10 @@ class LevelTwoFragment : BaseFragment(R.layout.fragment_level_two) {
                 slider.value = 0.0f
                 slider.isEnabled = false
                 winAudio.play()
+
+                if (sharedPreferences.getScore() < 2) {
+                    sharedPreferences.addScore()
+                }
 
             } else if (value > 50.0) {
 

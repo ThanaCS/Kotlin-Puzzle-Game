@@ -11,6 +11,7 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.upstream.*
 import com.thana.simplegame.R
+import com.thana.simplegame.data.common.SharedPreferences
 import com.thana.simplegame.databinding.FragmentLevelOneBinding
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
@@ -25,8 +26,13 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
     private lateinit var winAudio: ExoPlayer
     private lateinit var loseAudio: ExoPlayer
 
+    private lateinit var sharedPreferences: SharedPreferences
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        sharedPreferences = SharedPreferences(requireContext())
+
         binding.next.setOnClickListener {
             nextLevel()
         }
@@ -37,18 +43,19 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
 
     }
 
-    private fun showHint(){
+    private fun showHint() {
         binding.expand.setOnClickListener {
-            binding.hint.visibility =View.VISIBLE
+            binding.hint.visibility = View.VISIBLE
             binding.collapse.visibility = View.VISIBLE
             binding.expand.visibility = View.INVISIBLE
         }
         binding.collapse.setOnClickListener {
-            binding.hint.visibility =View.GONE
+            binding.hint.visibility = View.GONE
             binding.collapse.visibility = View.INVISIBLE
             binding.expand.visibility = View.VISIBLE
         }
     }
+
     private fun initAudio() {
 
         winAudio = ExoPlayer.Builder(requireContext()).build()
@@ -107,14 +114,18 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
                 binding.submit.isEnabled = false
                 binding.next.visibility = View.VISIBLE
 
-                if(::winAudio.isInitialized)
+                if (::winAudio.isInitialized)
                     winAudio.play()
+
+                if (sharedPreferences.getScore() < 1) {
+                    sharedPreferences.addScore()
+                }
 
             } else {
                 binding.wrong.visibility = View.VISIBLE
                 binding.right.visibility = View.GONE
 
-                if(::loseAudio.isInitialized)
+                if (::loseAudio.isInitialized)
                     loseAudio.play()
             }
             hideKeyboard()

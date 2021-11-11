@@ -3,6 +3,7 @@
     <string name="app_name">Simple Game</string>
     <string name="answer">الجواب</string>
     <string name="hint">تلميح</string>
+    <string name="level">مرحلة  </string>
     //lvl one
     <string name="question_level_one">كم عدد النحل هنا؟</string>
     <string name="hint_level_one">هل حاولت لمس النحل؟ يبدوا أنهم قد يلدغوا …</string>
@@ -18,4 +19,5 @@
     //lvl five
     <string name="question_level_five">اين الفطيرة؟</string>
     <string name="hint_level_five">ربما يجب عليك تعلم الطبخ</string>
+
 </resources>

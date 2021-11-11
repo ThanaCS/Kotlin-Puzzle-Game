@@ -2,6 +2,7 @@ package com.thana.simplegame.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
@@ -12,18 +13,26 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
 import com.thana.simplegame.R
+import com.thana.simplegame.data.common.SharedPreferences
 import com.thana.simplegame.databinding.FragmentLevelFourBinding
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
+import java.lang.Exception
 
 class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTouchListener,
     View.OnDragListener {
 
     private val binding by viewBinding(FragmentLevelFourBinding::bind)
+
+    private lateinit var sharedPreferences: SharedPreferences
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setListeners()
+
+        sharedPreferences = SharedPreferences(requireContext())
 
         binding.next.setOnClickListener {
             nextLevel()
@@ -76,13 +85,17 @@ class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTou
 
                 validateAnswer(dragevent)
 
-                if (!wrongArea(dragevent)) {
-                    val owner = view.parent as ViewGroup
-                    owner.removeView(view)
-                    val container = layoutview as ConstraintLayout
-                    view.x = dragevent.x - (view.width / 2)
-                    view.y = dragevent.y - (view.height / 2)
-                    container.addView(view)
+                try {
+                    if (!wrongArea(dragevent)) {
+                        val owner = view.parent as ViewGroup
+                        owner.removeView(view)
+                        val container = layoutview as ConstraintLayout
+                        view.x = dragevent.x - (view.width / 2)
+                        view.y = dragevent.y - (view.height / 2)
+                        container.addView(view)
+                    }
+                }catch (e:Exception){
+                    Log.d("Draging","Something went wrong")
                 }
 
                 view.visibility = View.VISIBLE
@@ -133,6 +146,9 @@ class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTou
             binding.celebrate.visibility = View.VISIBLE
             binding.celebrate.playAnimation()
             winAudio.play()
+            if (sharedPreferences.getScore() < 4) {
+                sharedPreferences.addScore()
+            }
         }
 
     }

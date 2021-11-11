@@ -10,6 +10,7 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
 import com.thana.simplegame.R
+import com.thana.simplegame.data.common.SharedPreferences
 import com.thana.simplegame.databinding.FragmentLevelFiveBinding
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
@@ -20,8 +21,13 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
 
     private val binding by viewBinding(FragmentLevelFiveBinding::bind)
 
+    private lateinit var sharedPreferences: SharedPreferences
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        sharedPreferences = SharedPreferences(requireContext())
+
         setListeners()
         showHint()
     }
@@ -111,6 +117,10 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
         binding.celebrate.visibility = View.VISIBLE
         binding.celebrate.playAnimation()
         winAudio.play()
+
+        if (sharedPreferences.getScore() < 5) {
+            sharedPreferences.addScore()
+        }
 
     }
 
