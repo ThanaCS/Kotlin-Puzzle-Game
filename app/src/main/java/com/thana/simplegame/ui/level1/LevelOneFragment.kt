@@ -24,7 +24,7 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
     View.OnDragListener {
 
     private val binding by viewBinding(FragmentLevelOneBinding::bind)
-
+    private var isExpanded = true
     private lateinit var winAudio: ExoPlayer
     private lateinit var loseAudio: ExoPlayer
     private val viewModel: SharedViewModel by viewModels()
@@ -43,16 +43,32 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
     }
 
     private fun showHint() {
+
+        binding.hintRoot.setOnClickListener {
+            if (isExpanded) expand() else collapse()
+        }
         binding.expand.setOnClickListener {
-            binding.hint.visibility = View.VISIBLE
-            binding.collapse.visibility = View.VISIBLE
-            binding.expand.visibility = View.INVISIBLE
+            if (isExpanded) expand() else collapse()
         }
         binding.collapse.setOnClickListener {
-            binding.hint.visibility = View.GONE
-            binding.collapse.visibility = View.INVISIBLE
-            binding.expand.visibility = View.VISIBLE
+            if (isExpanded) expand() else collapse()
         }
+    }
+
+    private fun expand() {
+
+        binding.hint.visibility = View.VISIBLE
+        binding.collapse.visibility = View.VISIBLE
+        binding.expand.visibility = View.INVISIBLE
+        isExpanded = false
+    }
+
+    private fun collapse() {
+        binding.hint.visibility = View.GONE
+        binding.collapse.visibility = View.INVISIBLE
+        binding.expand.visibility = View.VISIBLE
+        isExpanded = true
+
     }
 
     private fun initAudio() {

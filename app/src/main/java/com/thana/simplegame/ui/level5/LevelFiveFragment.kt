@@ -24,6 +24,8 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
     private val binding by viewBinding(FragmentLevelFiveBinding::bind)
     private val viewModel: SharedViewModel by viewModels()
 
+    private var isExpanded = true
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -82,16 +84,32 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
     }
 
     private fun showHint() {
+
+        binding.hintRoot.setOnClickListener {
+            if (isExpanded) expand() else collapse()
+        }
         binding.expand.setOnClickListener {
-            binding.hint.visibility = View.VISIBLE
-            binding.collapse.visibility = View.VISIBLE
-            binding.expand.visibility = View.INVISIBLE
+            if (isExpanded) expand() else collapse()
         }
         binding.collapse.setOnClickListener {
-            binding.hint.visibility = View.GONE
-            binding.collapse.visibility = View.INVISIBLE
-            binding.expand.visibility = View.VISIBLE
+            if (isExpanded) expand() else collapse()
         }
+    }
+
+    private fun expand() {
+
+        binding.hint.visibility = View.VISIBLE
+        binding.collapse.visibility = View.VISIBLE
+        binding.expand.visibility = View.INVISIBLE
+        isExpanded = false
+    }
+
+    private fun collapse() {
+        binding.hint.visibility = View.GONE
+        binding.collapse.visibility = View.INVISIBLE
+        binding.expand.visibility = View.VISIBLE
+        isExpanded = true
+
     }
 
     private fun correctAnswer() {
