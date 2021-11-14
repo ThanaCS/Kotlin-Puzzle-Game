@@ -1,4 +1,4 @@
-package com.thana.simplegame.ui
+package com.thana.simplegame.ui.level4
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,31 +8,32 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
 import com.thana.simplegame.R
-import com.thana.simplegame.data.common.SharedPreferences
 import com.thana.simplegame.databinding.FragmentLevelFourBinding
+import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
 
+@AndroidEntryPoint
 class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTouchListener,
     View.OnDragListener {
 
     private val binding by viewBinding(FragmentLevelFourBinding::bind)
 
-    private lateinit var sharedPreferences: SharedPreferences
+    private val viewModel: SharedViewModel by viewModels()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setListeners()
-
-        sharedPreferences = SharedPreferences(requireContext())
 
         binding.next.setOnClickListener {
             nextLevel()
@@ -146,8 +147,8 @@ class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTou
             binding.celebrate.visibility = View.VISIBLE
             binding.celebrate.playAnimation()
             winAudio.play()
-            if (sharedPreferences.getScore() < 4) {
-                sharedPreferences.addScore()
+            if (viewModel.getScore() < 4) {
+                viewModel.addScore()
             }
         }
 

@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/levelOneFragment"
-        android:name="com.thana.simplegame.ui.LevelOneFragment"
+        android:name="com.thana.simplegame.ui.level1.LevelOneFragment"
         android:label="fragment_level_one"
         tools:layout="@layout/fragment_level_one">
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/levelTwoFragment"
-        android:name="com.thana.simplegame.ui.LevelTwoFragment"
+        android:name="com.thana.simplegame.ui.level2.LevelTwoFragment"
         android:label="fragment_level_two"
         tools:layout="@layout/fragment_level_two">
         <action
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/levelThreeFragment"
-        android:name="com.thana.simplegame.ui.LevelThreeFragment"
+        android:name="com.thana.simplegame.ui.level3.LevelThreeFragment"
         android:label="fragment_level_three"
         tools:layout="@layout/fragment_level_three">
         <action
@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/levelFourFragment"
-        android:name="com.thana.simplegame.ui.LevelFourFragment"
+        android:name="com.thana.simplegame.ui.level4.LevelFourFragment"
         android:label="fragment_level_four"
         tools:layout="@layout/fragment_level_four" >
         <action
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/levelFiveFragment"
-        android:name="com.thana.simplegame.ui.LevelFiveFragment"
+        android:name="com.thana.simplegame.ui.level5.LevelFiveFragment"
         android:label="fragment_level_five"
         tools:layout="@layout/fragment_level_five" />
 

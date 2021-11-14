@@ -1,4 +1,4 @@
-package com.thana.simplegame.ui
+package com.thana.simplegame.ui.level1
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,32 +6,31 @@ import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.upstream.RawResourceDataSource
+import com.google.android.exoplayer2.upstream.*
 import com.thana.simplegame.R
-import com.thana.simplegame.data.common.SharedPreferences
-import com.thana.simplegame.databinding.FragmentLevelThreeBinding
+import com.thana.simplegame.databinding.FragmentLevelOneBinding
+import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
 import com.thana.simplegame.util.hideKeyboard
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnTouchListener,
+@AndroidEntryPoint
+class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouchListener,
     View.OnDragListener {
 
-    private val binding by viewBinding(FragmentLevelThreeBinding::bind)
+    private val binding by viewBinding(FragmentLevelOneBinding::bind)
 
     private lateinit var winAudio: ExoPlayer
     private lateinit var loseAudio: ExoPlayer
-
-    private lateinit var sharedPreferences: SharedPreferences
+    private val viewModel: SharedViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        sharedPreferences = SharedPreferences(requireContext())
 
         binding.next.setOnClickListener {
             nextLevel()
@@ -77,17 +76,20 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
     }
 
     private fun nextLevel() {
-        val action = LevelThreeFragmentDirections.actionLevelThreeFragmentToLevelFourFragment()
+        val action = LevelOneFragmentDirections.actionLevelOneFragmentToLevelTwoFragment()
         findNavController().navigate(action)
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
-        binding.cake1.setOnTouchListener(this)
-        binding.cake2.setOnTouchListener(this)
-        binding.cake3.setOnTouchListener(this)
+        binding.bee1.setOnTouchListener(this)
+        binding.bee2.setOnTouchListener(this)
+        binding.bee3.setOnTouchListener(this)
+        binding.bee4.setOnTouchListener(this)
+        binding.bee5.setOnTouchListener(this)
+        binding.bee6.setOnTouchListener(this)
+        binding.bee7.setOnTouchListener(this)
         binding.area.setOnDragListener(this)
-        binding.dinosaur.setOnDragListener(this)
         binding.input.setOnDragListener { _, _ ->
 
             return@setOnDragListener true
@@ -103,7 +105,7 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
         binding.submit.setOnClickListener {
             initAudio()
             val input = binding.editText.text.toString().trim()
-            if (input == "1") {
+            if (input == "7") {
                 binding.right.visibility = View.VISIBLE
                 binding.wrong.visibility = View.GONE
                 binding.celebrate.visibility = View.VISIBLE
@@ -114,8 +116,8 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
                 if (::winAudio.isInitialized)
                     winAudio.play()
 
-                if (sharedPreferences.getScore() < 3) {
-                    sharedPreferences.addScore()
+                if (viewModel.getScore() < 1) {
+                    viewModel.addScore()
                 }
 
             } else {
@@ -127,19 +129,6 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
             }
             hideKeyboard()
         }
-    }
-
-    private fun dinosaurEat(dragEvent: DragEvent, view: View) {
-        val faceXStart = binding.dinosaur.x
-        val faceYStart = binding.dinosaur.y
-
-        val faceXEnd = faceXStart + binding.dinosaur.width
-        val faceYEnd = faceYStart + binding.dinosaur.height
-
-        if (dragEvent.x in faceXStart..faceXEnd && dragEvent.y in faceYStart..faceYEnd) {
-            view.visibility = View.INVISIBLE
-        }
-
     }
 
 
@@ -158,15 +147,13 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
                 val owner = binding.area
                 owner.removeView(view)
 
-                if (layoutview.id != binding.dinosaur.id) {
-                    val container = layoutview as ConstraintLayout
+                val container = layoutview as ConstraintLayout
 
-                    view.x = dragevent.x - (view.width / 2)
-                    view.y = dragevent.y - (view.height / 2)
+                view.x = dragevent.x - (view.width / 2)
+                view.y = dragevent.y - (view.height / 2)
 
-                    container.addView(view)
-                    view.visibility = View.VISIBLE
-                }
+                container.addView(view)
+                view.visibility = View.VISIBLE
             }
             DragEvent.ACTION_DRAG_EXITED -> {
                 view.alpha = 1.0f
@@ -195,4 +182,3 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
         }
     }
 }
-
