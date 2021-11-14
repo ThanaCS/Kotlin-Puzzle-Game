@@ -1,12 +1,16 @@
 package com.thana.simplegame.data.common
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class SharedPreferences constructor(context: Context) {
+@Singleton
+class SharedPreferences @Inject constructor(private val application: Application) {
 
     var sharedPreferences: SharedPreferences =
-        context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
+        application.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
 
     fun addScore() {
         setScore(getScore() + 1)
@@ -16,9 +20,8 @@ class SharedPreferences constructor(context: Context) {
         sharedPreferences.edit().putInt(SCORE, value).apply()
     }
 
-    fun getScore(default: Int = 0): Int {
-        return sharedPreferences.getInt(SCORE, default)
-    }
+    fun getScore(default: Int = 0) = sharedPreferences.getInt(SCORE, default)
+
 
 
     fun deletePref(key: String) {

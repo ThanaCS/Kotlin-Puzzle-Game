@@ -1,27 +1,27 @@
-package com.thana.simplegame.ui
+package com.thana.simplegame.ui.level2
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
 import com.thana.simplegame.R
-import com.thana.simplegame.data.common.SharedPreferences
 import com.thana.simplegame.databinding.FragmentLevelTwoBinding
+import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LevelTwoFragment : BaseFragment(R.layout.fragment_level_two) {
 
     private val binding by viewBinding(FragmentLevelTwoBinding::bind)
-
-    private lateinit var sharedPreferences: SharedPreferences
+    private val viewModel: SharedViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        sharedPreferences = SharedPreferences(requireContext())
 
         binding.next.setOnClickListener {
             nextLevel()
@@ -84,8 +84,8 @@ class LevelTwoFragment : BaseFragment(R.layout.fragment_level_two) {
                 slider.isEnabled = false
                 winAudio.play()
 
-                if (sharedPreferences.getScore() < 2) {
-                    sharedPreferences.addScore()
+                if (viewModel.getScore() < 2) {
+                    viewModel.addScore()
                 }
 
             } else if (value > 50.0) {

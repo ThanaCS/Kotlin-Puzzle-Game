@@ -9,8 +9,9 @@ import androidx.navigation.ui.NavigationUI
 import com.thana.simplegame.ui.common.viewBinding
 import com.thana.simplegame.R
 import com.thana.simplegame.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val binding by viewBinding(ActivityMainBinding::inflate)
