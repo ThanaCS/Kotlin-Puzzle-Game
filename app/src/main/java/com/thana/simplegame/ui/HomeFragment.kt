@@ -52,7 +52,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     }
 
     private fun setGems() {
-        binding.gems.text = (viewModel.getScore() * 10).toString()
+        binding.gems.text = (viewModel.getScore() * 13).toString()
     }
 
 }

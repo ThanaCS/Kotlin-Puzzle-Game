@@ -12,9 +12,9 @@
     <string name="hint_level_two">ربما عليك القراءة بتمعن</string>
     //lvl three
     <string name="question_level_three">كم عدد الكيك هنا؟</string>
-    <string name="hint_level_three">احب الكيك !!</string>
+    <string name="hint_level_three">الديناصور يحب الكيك !!</string>
     //lvl four
-    <string name="question_level_four">اسقي النبتة</string>
+    <string name="question_level_four">اسقي "النبتة"</string>
     <string name="hint_level_four">اسقي "النبتة"</string>
     //lvl five
     <string name="question_level_five">اين الفطيرة؟</string>

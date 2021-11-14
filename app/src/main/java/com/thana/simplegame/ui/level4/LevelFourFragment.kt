@@ -29,6 +29,7 @@ class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTou
 
     private val viewModel: SharedViewModel by viewModels()
 
+    private var isExpanded = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,24 +43,39 @@ class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTou
         showHint()
 
     }
+    private fun showHint() {
 
+        binding.hintRoot.setOnClickListener {
+            if (isExpanded) expand() else collapse()
+        }
+        binding.expand.setOnClickListener {
+            if (isExpanded) expand() else collapse()
+        }
+        binding.collapse.setOnClickListener {
+            if (isExpanded) expand() else collapse()
+        }
+    }
+
+    private fun expand() {
+
+        binding.hint.visibility = View.VISIBLE
+        binding.collapse.visibility = View.VISIBLE
+        binding.expand.visibility = View.INVISIBLE
+        isExpanded = false
+    }
+
+    private fun collapse() {
+        binding.hint.visibility = View.GONE
+        binding.collapse.visibility = View.INVISIBLE
+        binding.expand.visibility = View.VISIBLE
+        isExpanded = true
+
+    }
     private fun nextLevel() {
         val action = LevelFourFragmentDirections.actionLevelFourFragmentToLevelFiveFragment()
         findNavController().navigate(action)
     }
 
-    private fun showHint() {
-        binding.expand.setOnClickListener {
-            binding.hint.visibility = View.VISIBLE
-            binding.collapse.visibility = View.VISIBLE
-            binding.expand.visibility = View.INVISIBLE
-        }
-        binding.collapse.setOnClickListener {
-            binding.hint.visibility = View.GONE
-            binding.collapse.visibility = View.INVISIBLE
-            binding.expand.visibility = View.VISIBLE
-        }
-    }
     @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
         binding.untouchable.isEnabled = false

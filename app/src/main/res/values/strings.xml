@@ -11,7 +11,7 @@
     <string name="hint_level_two">Maybe you should read carefully</string>
     //lvl three
     <string name="question_level_three">How many cakes are there?</string>
-    <string name="hint_level_three">I love cake !!</string>
+    <string name="hint_level_three">This dinosaur loves cake !!</string>
     //lvl four
     <string name="question_level_four">Water the plant</string>
     <string name="hint_level_four">Water \"the plant\"</string>
