@@ -131,6 +131,8 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
 
             DragEvent.ACTION_DRAG_ENTERED -> {
                 view.alpha = 0.3f
+                view.visibility = View.INVISIBLE
+
             }
             DragEvent.ACTION_DROP -> {
                 view.alpha = 1.0f
@@ -144,6 +146,11 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
                 container.addView(view)
                 view.visibility = View.VISIBLE
                 checkIfMixed(dragevent, view)
+
+            }
+            DragEvent.ACTION_DRAG_EXITED -> {
+                view.alpha = 1.0f
+                view.visibility = View.VISIBLE
 
             }
 
@@ -161,7 +168,6 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
 
             view.startDragAndDrop(null, shadowBuilder, view, 0)
 
-            view.visibility = View.INVISIBLE
             true
         } else {
             false
