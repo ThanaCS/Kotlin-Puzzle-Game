@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/levelEightFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -82,7 +82,7 @@
     </fragment>
     <fragment
         android:id="@+id/levelSevenFragment"
-        android:name="com.thana.simplegame.LevelSevenFragment"
+        android:name="com.thana.simplegame.ui.level7.LevelSevenFragment"
         android:label="fragment_level_seven"
         tools:layout="@layout/fragment_level_seven" >
         <action
@@ -93,7 +93,7 @@
     </fragment>
     <fragment
         android:id="@+id/levelEightFragment"
-        android:name="com.thana.simplegame.LevelEightFragment"
+        android:name="com.thana.simplegame.ui.level8.LevelEightFragment"
         android:label="fragment_level_eight"
         tools:layout="@layout/fragment_level_eight" />
 
