@@ -22,36 +22,43 @@
             android:layout_margin="16dp">
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/pink"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/circle"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                app:layout_constraintBottom_toBottomOf="@+id/yellow"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView4" />
+                app:layout_constraintTop_toTopOf="@+id/yellow" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/yellow"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/circle"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-                app:layout_constraintStart_toEndOf="@+id/imageView5"
-                app:layout_constraintTop_toTopOf="@+id/imageView3"
+                app:layout_constraintBottom_toBottomOf="@+id/blue"
+                app:layout_constraintStart_toEndOf="@+id/pink"
+                app:layout_constraintTop_toTopOf="@+id/blue"
                 app:tint="#FFEB3B" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/blue"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/circle"
                 app:layout_constraintBottom_toTopOf="@+id/swipe_text"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/yellow"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/blue" />
+
+            <ImageView
+                android:id="@+id/correct_area"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/next"
@@ -71,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/question_level_six"
+                android:text="@string/question_level_seven"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -94,58 +101,71 @@
 
             <ImageView
                 android:id="@+id/ball1"
-                android:layout_width="35dp"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/circle"
                 app:layout_constraintBottom_toBottomOf="@+id/ball2"
                 app:layout_constraintEnd_toStartOf="@+id/ball2"
                 app:layout_constraintTop_toTopOf="@+id/ball2"
-                app:tint="#FFEB3B" />
+                app:tint="#FF5722" />
 
             <ImageView
                 android:id="@+id/ball2"
-                android:layout_width="35dp"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/circle"
-                app:layout_constraintBottom_toBottomOf="@+id/ball3"
-                app:layout_constraintEnd_toStartOf="@+id/ball3"
-                app:layout_constraintTop_toTopOf="@+id/ball3"
-                app:tint="#8BC34A" />
+                app:layout_constraintBottom_toBottomOf="@+id/yellow_ball"
+                app:layout_constraintEnd_toStartOf="@+id/yellow_ball"
+                app:layout_constraintTop_toTopOf="@+id/yellow_ball"
+                app:tint="#FF9800" />
 
             <ImageView
-                android:id="@+id/ball3"
-                android:layout_width="35dp"
+                android:id="@+id/yellow_ball"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/circle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/swipe_text"
-                app:tint="#4CAF50" />
+                app:tint="#FFEB3B" />
 
             <ImageView
                 android:id="@+id/ball4"
-                android:layout_width="35dp"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/circle"
-                app:layout_constraintBottom_toBottomOf="@+id/ball3"
-                app:layout_constraintStart_toEndOf="@+id/ball3"
-                app:layout_constraintTop_toTopOf="@+id/ball3"
-                app:tint="#009688" />
+                app:layout_constraintBottom_toBottomOf="@+id/yellow_ball"
+                app:layout_constraintStart_toEndOf="@+id/yellow_ball"
+                app:layout_constraintTop_toTopOf="@+id/yellow_ball"
+                app:tint="#DA6888" />
 
             <ImageView
                 android:id="@+id/ball5"
-                android:layout_width="35dp"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/circle"
                 app:layout_constraintBottom_toBottomOf="@+id/ball4"
                 app:layout_constraintStart_toEndOf="@+id/ball4"
                 app:layout_constraintTop_toTopOf="@+id/ball4"
-                app:tint="#FFC107" />
+                app:tint="#E91E63" />
+
+            <ImageView
+                android:id="@+id/brow_ball"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/circle"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/swipe_text"
+                app:tint="#614632" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -204,7 +224,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:padding="16dp"
-                android:text="@string/hint_level_six"
+                android:text="@string/hint_level_seven"
                 android:textColor="@color/white"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
