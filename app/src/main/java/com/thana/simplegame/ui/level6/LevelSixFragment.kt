@@ -9,6 +9,7 @@ import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
@@ -17,6 +18,7 @@ import com.thana.simplegame.databinding.FragmentLevelSixBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
+import com.thana.simplegame.ui.level5.LevelFiveFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,6 +35,15 @@ class LevelSixFragment : BaseFragment(layout.fragment_level_six), View.OnTouchLi
 
         setListeners()
         showHint()
+        binding.next.setOnClickListener {
+            nextLevel()
+        }
+
+    }
+
+    private fun nextLevel() {
+        val action = LevelSixFragmentDirections.actionLevelSixFragmentToLevelSevenFragment()
+        findNavController().navigate(action)
     }
 
     @SuppressLint("ClickableViewAccessibility")

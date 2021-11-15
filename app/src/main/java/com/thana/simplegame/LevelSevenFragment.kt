@@ -1,28 +1,28 @@
-package com.thana.simplegame.ui.level5
+package com.thana.simplegame
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.DragEvent
-import android.view.MotionEvent
-import android.view.View
+import android.view.*
+import androidx.fragment.app.Fragment
+import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
-import com.thana.simplegame.R
-import com.thana.simplegame.databinding.FragmentLevelFiveBinding
+import com.thana.simplegame.databinding.FragmentLevelSevenBinding
+import com.thana.simplegame.databinding.FragmentLevelSixBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTouchListener,
+class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnTouchListener,
     View.OnDragListener {
 
-    private val binding by viewBinding(FragmentLevelFiveBinding::bind)
+    private val binding by viewBinding(FragmentLevelSevenBinding::bind)
     private val viewModel: SharedViewModel by viewModels()
 
     private var isExpanded = true
@@ -32,61 +32,47 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
 
         setListeners()
         showHint()
-        binding.next.setOnClickListener {
-            nextLevel()
-        }
-
     }
-
-    private fun nextLevel() {
-        val action = LevelFiveFragmentDirections.actionLevelFiveFragmentToLevelSixFragment()
-        findNavController().navigate(action)
-    }
-
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
-
-        binding.cow.setOnTouchListener(this)
-        binding.eggs.setOnTouchListener(this)
-        binding.food1.setOnTouchListener(this)
-        binding.food2.setOnTouchListener(this)
-        binding.flour.setOnTouchListener(this)
+        binding.blue.setOnTouchListener(this)
+        binding.yellow.setOnTouchListener(this)
+        binding.ball1.setOnTouchListener(this)
+        binding.ball2.setOnTouchListener(this)
+        binding.yellowBall.setOnTouchListener(this)
+        binding.ball4.setOnTouchListener(this)
+        binding.ball5.setOnTouchListener(this)
         binding.area.setOnDragListener(this)
 
     }
 
     private fun checkIfMixed(dragEvent: DragEvent, view: View) {
 
-        val cowXStart = binding.cow.x
-        val cowYStart = binding.cow.y
+        val correctAreaXStart = binding.correctArea.x
+        val correctAreaYStart = binding.correctArea.y
 
-        val cowXEnd = cowXStart + binding.cow.width
-        val cowYEnd = cowYStart + binding.cow.height
+        val correctAreaXEnd = correctAreaXStart + binding.correctArea.width
+        val correctAreaYEnd = correctAreaYStart + binding.correctArea.height
 
-        val flourXStart = binding.flour.x
-        val flourYStart = binding.flour.y
+        val yellowBallXStart = binding.yellowBall.x
+        val yellowBallYStart = binding.yellowBall.y
 
-        val flourXEnd = flourXStart + binding.flour.width
-        val flourYEnd = flourYStart + binding.flour.height
-
-        val eggXStart = binding.eggs.x
-        val eggYStart = binding.eggs.y
-
-        val eggXEnd = eggXStart + binding.eggs.width
-        val eggYEnd = eggYStart + binding.eggs.height
+        val yellowBallXEnd = yellowBallXStart + binding.yellowBall.width
+        val yellowBallYEnd = yellowBallYStart + binding.yellowBall.height
 
 
-        if (view.id == binding.cow.id || view.id == binding.flour.id || view.id == binding.eggs.id) {
-            if (dragEvent.x in cowXStart..cowXEnd
-                && dragEvent.y in cowYStart..cowYEnd
-                && dragEvent.x in flourXStart..flourXEnd
-                && dragEvent.y in flourYStart..flourYEnd
-                && dragEvent.x in flourXStart..eggXEnd
-                && dragEvent.y in flourYStart..eggYEnd
+        if (view.id == binding.correctArea.id ||
+            view.id == binding.yellowBall.id
+        ) {
+            if (dragEvent.x in correctAreaXStart..correctAreaXEnd
+                && dragEvent.y in correctAreaYStart..correctAreaYEnd
+                && dragEvent.x in yellowBallXStart..yellowBallXEnd
+                && dragEvent.y in yellowBallYStart..yellowBallYEnd
+
             ) {
 
-                correctAnswer()
+                correctAnswer(view as ImageView)
 
             }
         }
@@ -123,7 +109,7 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
 
     }
 
-    private fun correctAnswer() {
+    private fun correctAnswer(view: ImageView) {
 
         val winAudio = ExoPlayer.Builder(requireContext()).build()
 
@@ -134,19 +120,16 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
             prepare()
         }
 
-        binding.pancake.visibility = View.VISIBLE
-        binding.food1.visibility = View.INVISIBLE
-        binding.food2.visibility = View.INVISIBLE
-        binding.cow.visibility = View.INVISIBLE
-        binding.eggs.visibility = View.INVISIBLE
-        binding.flour.visibility = View.INVISIBLE
-        binding.right.visibility = View.VISIBLE
-        binding.next.visibility = View.VISIBLE
+        view.visibility = View.VISIBLE
+        view.setColorFilter(
+            ContextCompat.getColor(requireContext(), R.color.green),
+            android.graphics.PorterDuff.Mode.SRC_IN
+        )
         binding.celebrate.visibility = View.VISIBLE
         binding.celebrate.playAnimation()
         winAudio.play()
 
-        if (viewModel.getScore() < 5) {
+        if (viewModel.getScore() < 7) {
             viewModel.addScore()
         }
 
@@ -172,6 +155,7 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
 
                 view.x = dragevent.x - (view.width / 2)
                 view.y = dragevent.y - (view.height / 2)
+
                 container.addView(view)
                 view.visibility = View.VISIBLE
                 checkIfMixed(dragevent, view)

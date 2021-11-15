@@ -22,4 +22,7 @@
     //lvl six
     <string name="question_level_six">ابحث عن الكرة البنية</string>
     <string name="hint_level_six">جرب مزج الألوان</string>
+    //lvl seven
+    <string name="question_level_seven">ابحث عن الكرة الخضراء</string>
+    <string name="hint_level_seven">جرب مزج الألوان</string>
 </resources>
