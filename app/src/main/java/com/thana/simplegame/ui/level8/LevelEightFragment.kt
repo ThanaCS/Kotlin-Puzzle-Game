@@ -1,19 +1,15 @@
-package com.thana.simplegame
+package com.thana.simplegame.ui.level8
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
-import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
+import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentLevelEightBinding
-import com.thana.simplegame.databinding.FragmentLevelSevenBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
@@ -33,18 +29,10 @@ class LevelEightFragment : BaseFragment(R.layout.fragment_level_eight), View.OnT
 
         setListeners()
         showHint()
-        binding.next.setOnClickListener {
-            nextLevel()
-        }
         binding.title.setOnClickListener {
             correctAnswer()
         }
 
-    }
-
-    private fun nextLevel() {
-        val action = LevelSevenFragmentDirections.actionLevelSevenFragmentToLevelEightFragment()
-        findNavController().navigate(action)
     }
 
     @SuppressLint("ClickableViewAccessibility")
