@@ -1,4 +1,4 @@
-package com.thana.simplegame.ui
+package com.thana.simplegame.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

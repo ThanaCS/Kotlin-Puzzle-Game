@@ -22,4 +22,6 @@
     <color name="dark_background">#25243C</color>
     <color name="card_background">#333151</color>
     <color name="yellow">#734751</color>
+    <color name="brown">#653838</color>
+
 </resources>
