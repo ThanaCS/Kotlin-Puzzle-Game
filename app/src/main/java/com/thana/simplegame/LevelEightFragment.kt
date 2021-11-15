@@ -12,19 +12,18 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
+import com.thana.simplegame.databinding.FragmentLevelEightBinding
 import com.thana.simplegame.databinding.FragmentLevelSevenBinding
-import com.thana.simplegame.databinding.FragmentLevelSixBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
-import com.thana.simplegame.ui.level6.LevelSixFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnTouchListener,
+class LevelEightFragment : BaseFragment(R.layout.fragment_level_eight), View.OnTouchListener,
     View.OnDragListener {
 
-    private val binding by viewBinding(FragmentLevelSevenBinding::bind)
+    private val binding by viewBinding(FragmentLevelEightBinding::bind)
     private val viewModel: SharedViewModel by viewModels()
 
     private var isExpanded = true
@@ -36,6 +35,9 @@ class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnT
         showHint()
         binding.next.setOnClickListener {
             nextLevel()
+        }
+        binding.title.setOnClickListener {
+            correctAnswer()
         }
 
     }
@@ -49,7 +51,6 @@ class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnT
     private fun setListeners() {
         binding.blue.setOnTouchListener(this)
         binding.yellow.setOnTouchListener(this)
-        binding.ball1.setOnTouchListener(this)
         binding.ball2.setOnTouchListener(this)
         binding.yellowBall.setOnTouchListener(this)
         binding.ball4.setOnTouchListener(this)
@@ -58,38 +59,6 @@ class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnT
 
     }
 
-    private fun checkIfMixed(dragEvent: DragEvent, view: View) {
-
-        val correctAreaXStart = binding.correctArea.x
-        val correctAreaYStart = binding.correctArea.y
-
-        val correctAreaXEnd = correctAreaXStart + binding.correctArea.width
-        val correctAreaYEnd = correctAreaYStart + binding.correctArea.height
-
-        val yellowBallXStart = binding.yellowBall.x
-        val yellowBallYStart = binding.yellowBall.y
-
-        val yellowBallXEnd = yellowBallXStart + binding.yellowBall.width
-        val yellowBallYEnd = yellowBallYStart + binding.yellowBall.height
-
-
-        if (view.id == binding.correctArea.id ||
-            view.id == binding.yellowBall.id
-        ) {
-            if (dragEvent.x in correctAreaXStart..correctAreaXEnd
-                && dragEvent.y in correctAreaYStart..correctAreaYEnd
-                && dragEvent.x in yellowBallXStart..yellowBallXEnd
-                && dragEvent.y in yellowBallYStart..yellowBallYEnd
-
-            ) {
-
-                correctAnswer(view as ImageView)
-
-            }
-        }
-
-
-    }
 
     private fun showHint() {
 
@@ -120,7 +89,7 @@ class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnT
 
     }
 
-    private fun correctAnswer(view: ImageView) {
+    private fun correctAnswer() {
 
         val winAudio = ExoPlayer.Builder(requireContext()).build()
 
@@ -131,16 +100,12 @@ class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnT
             prepare()
         }
 
-        view.visibility = View.VISIBLE
-        view.setColorFilter(
-            ContextCompat.getColor(requireContext(), R.color.green),
-            android.graphics.PorterDuff.Mode.SRC_IN
-        )
+        binding.right.visibility = View.VISIBLE
         binding.celebrate.visibility = View.VISIBLE
         binding.celebrate.playAnimation()
         winAudio.play()
 
-        if (viewModel.getScore() < 7) {
+        if (viewModel.getScore() < 8) {
             viewModel.addScore()
         }
 
@@ -169,7 +134,6 @@ class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnT
 
                 container.addView(view)
                 view.visibility = View.VISIBLE
-                checkIfMixed(dragevent, view)
 
             }
             DragEvent.ACTION_DRAG_EXITED -> {
