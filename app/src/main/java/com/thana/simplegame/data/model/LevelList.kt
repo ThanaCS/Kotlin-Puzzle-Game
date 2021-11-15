@@ -41,7 +41,8 @@ val levelList: List<GameInfo> = listOf(
     ),
     GameInfo(
         level = 8,
-        gems = 0
+        gems = 0,
+        fragmentID = R.id.levelEightFragment
     ),
     GameInfo(
         level = 9,

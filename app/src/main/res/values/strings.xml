@@ -24,5 +24,8 @@
     //lvl seven
     <string name="question_level_seven">Find the green ball</string>
     <string name="hint_level_seven">Try mixing colors</string>
+    //lvl eight
+    <string name="question_level_eight">Find a white color</string>
+    <string name="hint_level_eight">Any white color does not have to be a ball</string>
 
 </resources>

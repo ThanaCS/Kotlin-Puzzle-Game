@@ -25,4 +25,7 @@
     //lvl seven
     <string name="question_level_seven">ابحث عن الكرة الخضراء</string>
     <string name="hint_level_seven">جرب مزج الألوان</string>
+    //lvl eight
+    <string name="question_level_eight">ابحث عن اللون الأبيض</string>
+    <string name="hint_level_eight">ابحث عن اي شيء لونه ابيض لا يجب ان يكون كرة</string>
 </resources>
