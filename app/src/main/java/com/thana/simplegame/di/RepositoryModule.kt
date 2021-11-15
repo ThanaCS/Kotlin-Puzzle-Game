@@ -1,7 +1,7 @@
 package com.thana.simplegame.di
 
-import com.thana.simplegame.data.repository.SharedRepository
-import com.thana.simplegame.data.repository.SharedRepositoryImpl
+import com.thana.simplegame.data.repository.sharedrepositoy.SharedRepository
+import com.thana.simplegame.data.repository.sharedrepositoy.SharedRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

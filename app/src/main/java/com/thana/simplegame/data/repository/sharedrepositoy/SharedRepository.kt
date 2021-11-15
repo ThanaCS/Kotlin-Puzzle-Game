@@ -1,4 +1,4 @@
-package com.thana.simplegame.data.repository
+package com.thana.simplegame.data.repository.sharedrepositoy
 
 interface SharedRepository {
 

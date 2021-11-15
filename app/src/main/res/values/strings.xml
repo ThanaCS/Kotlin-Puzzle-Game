@@ -18,4 +18,7 @@
     //lvl five
     <string name="question_level_five">Find the pancake</string>
     <string name="hint_level_five">Maybe you should learn how to cook</string>
+    //lvl six
+    <string name="question_level_six">Find the brown ball</string>
+    <string name="hint_level_six">Try mixing colors</string>
 </resources>

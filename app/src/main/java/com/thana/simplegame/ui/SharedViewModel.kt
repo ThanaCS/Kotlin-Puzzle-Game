@@ -2,7 +2,7 @@ package com.thana.simplegame.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thana.simplegame.data.repository.SharedRepository
+import com.thana.simplegame.data.repository.sharedrepositoy.SharedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

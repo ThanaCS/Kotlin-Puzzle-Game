@@ -19,5 +19,7 @@
     //lvl five
     <string name="question_level_five">اين الفطيرة؟</string>
     <string name="hint_level_five">ربما يجب عليك تعلم الطبخ</string>
-
+    //lvl six
+    <string name="question_level_six">ابحث عن الكرة البنية</string>
+    <string name="hint_level_six">جرب مزج الألوان</string>
 </resources>

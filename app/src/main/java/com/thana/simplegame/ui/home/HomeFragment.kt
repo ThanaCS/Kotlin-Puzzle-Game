@@ -1,4 +1,4 @@
-package com.thana.simplegame.ui
+package com.thana.simplegame.ui.home
 
 import android.os.Bundle
 import android.view.View
@@ -6,9 +6,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.thana.simplegame.R
-import com.thana.simplegame.data.common.SharedPreferences
 import com.thana.simplegame.data.model.levelList
 import com.thana.simplegame.databinding.FragmentHomeBinding
+import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
 import dagger.hilt.android.AndroidEntryPoint

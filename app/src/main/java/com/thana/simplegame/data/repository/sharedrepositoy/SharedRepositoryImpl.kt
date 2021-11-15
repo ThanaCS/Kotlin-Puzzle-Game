@@ -1,6 +1,7 @@
-package com.thana.simplegame.data.repository
+package com.thana.simplegame.data.repository.sharedrepositoy
 
 import com.thana.simplegame.data.common.SharedPreferences
+import com.thana.simplegame.data.repository.sharedrepositoy.SharedRepository
 import javax.inject.Inject
 
 class SharedRepositoryImpl @Inject constructor(private val sharedPreferences: SharedPreferences) :
