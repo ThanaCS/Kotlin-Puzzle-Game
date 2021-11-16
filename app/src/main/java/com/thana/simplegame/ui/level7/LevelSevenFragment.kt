@@ -134,6 +134,7 @@ class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnT
             ContextCompat.getColor(requireContext(), R.color.green),
             android.graphics.PorterDuff.Mode.SRC_IN
         )
+        binding.next.visibility = View.VISIBLE
         binding.celebrate.visibility = View.VISIBLE
         binding.right.visibility = View.VISIBLE
         binding.celebrate.playAnimation()
