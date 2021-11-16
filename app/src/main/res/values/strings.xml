@@ -27,5 +27,8 @@
     //lvl eight
     <string name="question_level_eight">Find a white color</string>
     <string name="hint_level_eight">Any white color does not have to be a ball</string>
+    //lvl nine
+    <string name="question_level_nine">Find the differences</string>
+    <string name="hint_level_nine">This is so difficult! they look the same</string>
 
 </resources>

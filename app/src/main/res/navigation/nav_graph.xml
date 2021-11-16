@@ -95,6 +95,17 @@
         android:id="@+id/levelEightFragment"
         android:name="com.thana.simplegame.ui.level8.LevelEightFragment"
         android:label="fragment_level_eight"
-        tools:layout="@layout/fragment_level_eight" />
+        tools:layout="@layout/fragment_level_eight" >
+        <action
+            android:id="@+id/action_levelEightFragment_to_levelNineFragment"
+            app:destination="@id/levelNineFragment"
+            app:popUpTo="@id/levelEightFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelNineFragment"
+        android:name="com.thana.simplegame.ui.level9.LevelNineFragment"
+        android:label="fragment_level_nine"
+        tools:layout="@layout/fragment_level_nine" />
 
 </navigation>
