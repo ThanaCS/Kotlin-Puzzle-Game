@@ -1,5 +1,34 @@
 <resources>
-    <string name="app_name">Simple Game</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name" translatable="false">Simple Game</string>
+    <string name="answer">A N S W E R</string>
+    <string name="hint">HINT</string>
+    <string name="level">Level </string>
+    //lvl one
+    <string name="question_level_one">How many bees are there?</string>
+    <string name="hint_level_one">Have you tried touching the bees? they must sting…</string>
+    //lvl two
+    <string name="question_level_two">swipe to left</string>
+    <string name="hint_level_two">Maybe you should read carefully</string>
+    //lvl three
+    <string name="question_level_three">How many cakes are there?</string>
+    <string name="hint_level_three">This dinosaur loves cake !!</string>
+    //lvl four
+    <string name="question_level_four">Water the plant</string>
+    <string name="hint_level_four">Water \"the plant\"</string>
+    //lvl five
+    <string name="question_level_five">Find the pancake</string>
+    <string name="hint_level_five">Maybe you should learn how to cook</string>
+    //lvl six
+    <string name="question_level_six">Find the brown ball</string>
+    <string name="hint_level_six">Try mixing colors</string>
+    //lvl seven
+    <string name="question_level_seven">Find the green ball</string>
+    <string name="hint_level_seven">Try mixing colors</string>
+    //lvl eight
+    <string name="question_level_eight">Find a white color</string>
+    <string name="hint_level_eight">Any white color does not have to be a ball</string>
+    //lvl nine
+    <string name="question_level_nine">Find the differences</string>
+    <string name="hint_level_nine">This is so difficult! they look the same</string>
+
 </resources>

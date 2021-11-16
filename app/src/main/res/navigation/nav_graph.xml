@@ -3,35 +3,109 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/levelThreeFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.thana.simplegame.ui.HomeFragment"
+        android:name="com.thana.simplegame.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_levelOneFragment"
+            app:destination="@id/levelOneFragment" />
+    </fragment>
     <fragment
         android:id="@+id/levelOneFragment"
-        android:name="com.thana.simplegame.ui.LevelOneFragment"
+        android:name="com.thana.simplegame.ui.level1.LevelOneFragment"
         android:label="fragment_level_one"
-        tools:layout="@layout/fragment_level_one" >
+        tools:layout="@layout/fragment_level_one">
         <action
             android:id="@+id/action_levelOneFragment_to_levelTwoFragment"
-            app:destination="@id/levelTwoFragment" />
+            app:destination="@id/levelTwoFragment"
+            app:popUpTo="@id/levelOneFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/levelTwoFragment"
-        android:name="com.thana.simplegame.ui.LevelTwoFragment"
+        android:name="com.thana.simplegame.ui.level2.LevelTwoFragment"
         android:label="fragment_level_two"
-        tools:layout="@layout/fragment_level_two" >
+        tools:layout="@layout/fragment_level_two">
         <action
             android:id="@+id/action_levelTwoFragment_to_levelThreeFragment"
-            app:destination="@id/levelThreeFragment" />
+            app:destination="@id/levelThreeFragment"
+            app:popUpTo="@id/levelTwoFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/levelThreeFragment"
-        android:name="com.thana.simplegame.ui.LevelThreeFragment"
+        android:name="com.thana.simplegame.ui.level3.LevelThreeFragment"
         android:label="fragment_level_three"
-        tools:layout="@layout/fragment_level_three" />
+        tools:layout="@layout/fragment_level_three">
+        <action
+            android:id="@+id/action_levelThreeFragment_to_levelFourFragment"
+            app:destination="@id/levelFourFragment"
+            app:popUpTo="@id/levelThreeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelFourFragment"
+        android:name="com.thana.simplegame.ui.level4.LevelFourFragment"
+        android:label="fragment_level_four"
+        tools:layout="@layout/fragment_level_four" >
+        <action
+            android:id="@+id/action_levelFourFragment_to_levelFiveFragment"
+            app:destination="@id/levelFiveFragment"
+            app:popUpTo="@id/levelFourFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelFiveFragment"
+        android:name="com.thana.simplegame.ui.level5.LevelFiveFragment"
+        android:label="fragment_level_five"
+        tools:layout="@layout/fragment_level_five" >
+        <action
+            android:id="@+id/action_levelFiveFragment_to_levelSixFragment"
+            app:destination="@id/levelSixFragment"
+            app:popUpTo="@id/levelFiveFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelSixFragment"
+        android:name="com.thana.simplegame.ui.level6.LevelSixFragment"
+        android:label="fragment_level_six"
+        tools:layout="@layout/fragment_level_six" >
+        <action
+            android:id="@+id/action_levelSixFragment_to_levelSevenFragment"
+            app:destination="@id/levelSevenFragment"
+            app:popUpTo="@id/levelSixFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelSevenFragment"
+        android:name="com.thana.simplegame.ui.level7.LevelSevenFragment"
+        android:label="fragment_level_seven"
+        tools:layout="@layout/fragment_level_seven" >
+        <action
+            android:id="@+id/action_levelSevenFragment_to_levelEightFragment"
+            app:destination="@id/levelEightFragment"
+            app:popUpTo="@id/levelSevenFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelEightFragment"
+        android:name="com.thana.simplegame.ui.level8.LevelEightFragment"
+        android:label="fragment_level_eight"
+        tools:layout="@layout/fragment_level_eight" >
+        <action
+            android:id="@+id/action_levelEightFragment_to_levelNineFragment"
+            app:destination="@id/levelNineFragment"
+            app:popUpTo="@id/levelEightFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelNineFragment"
+        android:name="com.thana.simplegame.ui.level9.LevelNineFragment"
+        android:label="fragment_level_nine"
+        tools:layout="@layout/fragment_level_nine" />
 
 </navigation>
