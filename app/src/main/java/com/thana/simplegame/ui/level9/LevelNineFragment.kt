@@ -3,6 +3,7 @@ package com.thana.simplegame.ui.level9
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
@@ -11,6 +12,7 @@ import com.thana.simplegame.databinding.FragmentLevelNineBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
+import com.thana.simplegame.ui.level6.LevelSixFragmentDirections
 import com.thana.simplegame.util.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,12 +27,18 @@ class LevelNineFragment : BaseFragment(R.layout.fragment_level_nine){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         showHint()
         validateAnswer()
 
+        binding.next.setOnClickListener {
+            nextLevel()
+        }
     }
 
+    private fun nextLevel() {
+        val action = LevelNineFragmentDirections.actionLevelNineFragmentToLevelTenFragment()
+        findNavController().navigate(action)
+    }
     private fun showHint() {
 
         binding.hintRoot.setOnClickListener {

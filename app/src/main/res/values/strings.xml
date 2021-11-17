@@ -30,5 +30,8 @@
     //lvl nine
     <string name="question_level_nine">Find the differences</string>
     <string name="hint_level_nine">This is so difficult! they look the same</string>
+    //lvl nine
+    <string name="question_level_ten">Find the yellow panda</string>
+    <string name="hint_level_ten">Look for a yellow paint</string>
 
 </resources>
