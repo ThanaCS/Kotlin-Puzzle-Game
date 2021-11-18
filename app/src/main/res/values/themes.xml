@@ -1,14 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.SimpleGame" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/app_theme</item>
-        <item name="colorPrimaryVariant">@color/app_theme</item>
+
+        <item name="colorPrimary">@color/card_background</item>
+        <item name="colorPrimaryVariant">@color/dark_background</item>
         <item name="colorOnPrimary">@color/light_background</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/app_theme_light</item>
-        <item name="colorSecondaryVariant">@color/app_theme</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorAccent">@color/white</item>
+
+<!--        <item name="android:fontFamily">@font/inconsol</item>-->
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
@@ -30,4 +30,5 @@
         <item name="android:background">@drawable/button_3d_image_yellow</item>
 
     </style>
+
 </resources>
