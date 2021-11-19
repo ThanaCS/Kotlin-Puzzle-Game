@@ -1,5 +1,5 @@
-# Simple Kotlin Game 
-
+# Simple Game 
+This is an open source puzzle game made with kotlin with more than 10 levels.  
 ## License 
 
 ```
