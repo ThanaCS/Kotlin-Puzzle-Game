@@ -1,5 +1,6 @@
 package com.thana.simplegame
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -20,15 +21,35 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
 
         setProfileInfo()
-
+        binding.share.setOnClickListener { shareProgress() }
     }
 
     private fun setProfileInfo() {
         val score = viewModel.getScore()
+        val coins = score / 2
         val totalLevels = 25
         binding.progressBar.progress = score * 100 / totalLevels
         binding.gems.text = (score * 13).toString()
-        binding.score.text = score.toString()
+        binding.levelUnlockedNumber.text = score.toString()
+        binding.score.text = coins.toString()
+    }
+
+    private fun shareProgress() {
+        try {
+            val score = viewModel.getScore()
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.type = "text/plain"
+            var shareMessage = getString(R.string.share_text, score)
+            shareMessage =
+                """
+                ${shareMessage}https://play.google.com/store/apps/details?id=
+                ${BuildConfig.APPLICATION_ID}
+                """.trimIndent()
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
+            startActivity(Intent.createChooser(shareIntent, null))
+        } catch (e: Exception) {
+
+        }
     }
 }
 
