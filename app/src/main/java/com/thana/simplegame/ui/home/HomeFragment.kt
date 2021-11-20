@@ -48,7 +48,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     }
 
     private fun setScore() {
-        binding.score.text = viewModel.getScore().toString()
+        val coins = viewModel.getScore()/2
+        binding.score.text = coins.toString()
     }
 
     private fun setGems() {
