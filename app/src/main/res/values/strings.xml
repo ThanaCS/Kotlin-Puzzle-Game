@@ -33,5 +33,9 @@
     //lvl nine
     <string name="question_level_ten">Find the yellow panda</string>
     <string name="hint_level_ten">Look for a yellow paint</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Preference Titles -->
+
 
 </resources>

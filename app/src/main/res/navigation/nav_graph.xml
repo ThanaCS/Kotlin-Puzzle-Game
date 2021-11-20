@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_homeFragment_to_levelOneFragment"
             app:destination="@id/levelOneFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/levelOneFragment"
@@ -118,5 +124,15 @@
         android:name="com.thana.simplegame.LevelTenFragment"
         android:label="fragment_level_ten"
         tools:layout="@layout/fragment_level_ten" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.thana.simplegame.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.thana.simplegame.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>
