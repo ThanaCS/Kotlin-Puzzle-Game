@@ -49,6 +49,7 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.preference:preference:1.1.1'
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-scalars:2.6.0"
@@ -65,5 +66,7 @@ dependencies {
     implementation "com.airbnb.android:lottie:4.2.0"
     implementation 'com.github.SMehranB:GlowNeonButton:2.0.1'
     implementation 'com.google.android.exoplayer:exoplayer:2.16.0'
+    implementation 'com.google.android.play:core:1.10.2'
+    implementation 'com.google.android.play:core-ktx:1.8.1'
 
 }

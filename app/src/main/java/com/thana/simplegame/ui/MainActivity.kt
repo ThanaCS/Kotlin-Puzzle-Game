@@ -2,7 +2,6 @@ package com.thana.simplegame.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.forEach
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -21,14 +20,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        binding.bottomNavigationView.menu.forEach {
-            it.isEnabled = false
-        }
+
         binding.fab.setOnClickListener {
             navController.navigate(R.id.homeFragment)
         }
-        navController = findNavController(R.id.nav_host_fragment)
         binding.bottomNavigationView.background = null
+
+
+        binding.bottomNavigationView.menu.getItem(2).isEnabled = false
+
+        binding.bottomNavigationView.menu.getItem(1).isEnabled = false
+
+        navController = findNavController(R.id.nav_host_fragment)
+
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
 
     }
