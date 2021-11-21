@@ -89,20 +89,11 @@ class LevelEightFragment : BaseFragment(R.layout.fragment_level_eight), View.OnT
 
     private fun correctAnswer() {
 
-        val winAudio = ExoPlayer.Builder(requireContext()).build()
-
-        val winUri = RawResourceDataSource.buildRawResourceUri(R.raw.win)
-
-        winAudio.apply {
-            setMediaItem(MediaItem.fromUri(winUri))
-            prepare()
-        }
-
         binding.next.visibility = View.VISIBLE
         binding.right.visibility = View.VISIBLE
         binding.celebrate.visibility = View.VISIBLE
         binding.celebrate.playAnimation()
-        winAudio.play()
+        viewModel.playWin()
 
         if (viewModel.getScore() < 8) {
             viewModel.addScore()

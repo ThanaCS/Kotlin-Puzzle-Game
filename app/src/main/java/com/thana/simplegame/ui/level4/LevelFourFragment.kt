@@ -148,21 +148,12 @@ class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTou
         val faceXEnd = faceXStart + binding.waterText.width
         val faceYEnd = faceYStart + binding.waterText.height
 
-        val winAudio = ExoPlayer.Builder(requireContext()).build()
-
-        val winUri = RawResourceDataSource.buildRawResourceUri(R.raw.win)
-
-        winAudio.apply {
-            setMediaItem(MediaItem.fromUri(winUri))
-            prepare()
-        }
-
         if (dragEvent.x in faceXStart..faceXEnd && dragEvent.y in faceYStart..faceYEnd) {
             binding.right.visibility = View.VISIBLE
             binding.next.visibility = View.VISIBLE
             binding.celebrate.visibility = View.VISIBLE
             binding.celebrate.playAnimation()
-            winAudio.play()
+            viewModel.playWin()
             if (viewModel.getScore() < 4) {
                 viewModel.addScore()
             }

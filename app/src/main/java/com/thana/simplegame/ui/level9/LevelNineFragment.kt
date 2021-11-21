@@ -17,13 +17,12 @@ import com.thana.simplegame.util.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LevelNineFragment : BaseFragment(R.layout.fragment_level_nine){
+class LevelNineFragment : BaseFragment(R.layout.fragment_level_nine) {
 
     private val binding by viewBinding(FragmentLevelNineBinding::bind)
     private var isExpanded = true
-    private lateinit var winAudio: ExoPlayer
-    private lateinit var loseAudio: ExoPlayer
     private val viewModel: SharedViewModel by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -39,6 +38,7 @@ class LevelNineFragment : BaseFragment(R.layout.fragment_level_nine){
         val action = LevelNineFragmentDirections.actionLevelNineFragmentToLevelTenFragment()
         findNavController().navigate(action)
     }
+
     private fun showHint() {
 
         binding.hintRoot.setOnClickListener {
@@ -68,31 +68,10 @@ class LevelNineFragment : BaseFragment(R.layout.fragment_level_nine){
 
     }
 
-    private fun initAudio() {
-
-        winAudio = ExoPlayer.Builder(requireContext()).build()
-        loseAudio = ExoPlayer.Builder(requireContext()).build()
-
-        val winUri = RawResourceDataSource.buildRawResourceUri(R.raw.win)
-        val loseUri = RawResourceDataSource.buildRawResourceUri(R.raw.lose)
-
-        winAudio.apply {
-            setMediaItem(MediaItem.fromUri(winUri))
-            prepare()
-
-        }
-
-        loseAudio.apply {
-            setMediaItem(MediaItem.fromUri(loseUri))
-            prepare()
-        }
-    }
-
 
     private fun validateAnswer() {
 
         binding.submit.setOnClickListener {
-            initAudio()
             val input = binding.editText.text.toString().trim()
             if (input == "0") {
                 binding.right.visibility = View.VISIBLE
@@ -102,8 +81,7 @@ class LevelNineFragment : BaseFragment(R.layout.fragment_level_nine){
                 binding.submit.isEnabled = false
                 binding.next.visibility = View.VISIBLE
 
-                if (::winAudio.isInitialized)
-                    winAudio.play()
+                viewModel.playWin()
 
                 if (viewModel.getScore() < 9) {
                     viewModel.addScore()
@@ -112,9 +90,7 @@ class LevelNineFragment : BaseFragment(R.layout.fragment_level_nine){
             } else {
                 binding.wrong.visibility = View.VISIBLE
                 binding.right.visibility = View.GONE
-
-                if (::loseAudio.isInitialized)
-                    loseAudio.play()
+                viewModel.playLose()
             }
             hideKeyboard()
         }

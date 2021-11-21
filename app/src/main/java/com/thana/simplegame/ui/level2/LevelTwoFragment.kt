@@ -61,6 +61,7 @@ class LevelTwoFragment : BaseFragment(R.layout.fragment_level_two) {
         isExpanded = true
 
     }
+
     private fun nextLevel() {
         val action = LevelTwoFragmentDirections.actionLevelTwoFragmentToLevelThreeFragment()
         findNavController().navigate(action)
@@ -68,24 +69,6 @@ class LevelTwoFragment : BaseFragment(R.layout.fragment_level_two) {
 
     private fun validateAnswer() {
 
-        val loseAudio = ExoPlayer.Builder(requireContext()).build()
-
-        val loseUri = RawResourceDataSource.buildRawResourceUri(R.raw.lose)
-
-        val winAudio = ExoPlayer.Builder(requireContext()).build()
-
-        val winUri = RawResourceDataSource.buildRawResourceUri(R.raw.win)
-
-
-        loseAudio.apply {
-            setMediaItem(MediaItem.fromUri(loseUri))
-            prepare()
-        }
-
-        winAudio.apply {
-            setMediaItem(MediaItem.fromUri(winUri))
-            prepare()
-        }
 
         binding.slider.addOnChangeListener { slider, value, _ ->
             if (value < 10.0) {
@@ -98,7 +81,7 @@ class LevelTwoFragment : BaseFragment(R.layout.fragment_level_two) {
 
                 slider.value = 0.0f
                 slider.isEnabled = false
-                winAudio.play()
+                viewModel.playWin()
 
                 if (viewModel.getScore() < 2) {
                     viewModel.addScore()
@@ -108,7 +91,7 @@ class LevelTwoFragment : BaseFragment(R.layout.fragment_level_two) {
 
                 binding.right.visibility = View.GONE
                 binding.wrong.visibility = View.VISIBLE
-                loseAudio.play()
+                viewModel.playLose()
             }
 
         }

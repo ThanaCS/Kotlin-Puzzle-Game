@@ -18,7 +18,6 @@ import com.thana.simplegame.databinding.FragmentLevelSixBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
-import com.thana.simplegame.ui.level5.LevelFiveFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -148,14 +147,6 @@ class LevelSixFragment : BaseFragment(layout.fragment_level_six), View.OnTouchLi
 
     private fun correctAnswer(view: ImageView) {
 
-        val winAudio = ExoPlayer.Builder(requireContext()).build()
-
-        val winUri = RawResourceDataSource.buildRawResourceUri(raw.win)
-
-        winAudio.apply {
-            setMediaItem(MediaItem.fromUri(winUri))
-            prepare()
-        }
 
         binding.ball1.visibility = View.INVISIBLE
         binding.ball1.visibility = View.INVISIBLE
@@ -172,7 +163,7 @@ class LevelSixFragment : BaseFragment(layout.fragment_level_six), View.OnTouchLi
         )
         binding.celebrate.visibility = View.VISIBLE
         binding.celebrate.playAnimation()
-        winAudio.play()
+        viewModel.playWin()
 
         if (viewModel.getScore() < 6) {
             viewModel.addScore()

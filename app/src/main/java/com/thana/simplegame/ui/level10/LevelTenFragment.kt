@@ -1,4 +1,4 @@
-package com.thana.simplegame
+package com.thana.simplegame.ui.level10
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,9 +7,7 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.upstream.RawResourceDataSource
+import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentLevelTenBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
@@ -110,15 +108,6 @@ class LevelTenFragment : BaseFragment(R.layout.fragment_level_ten), View.OnTouch
 
     private fun correctAnswer() {
 
-        val winAudio = ExoPlayer.Builder(requireContext()).build()
-
-        val winUri = RawResourceDataSource.buildRawResourceUri(R.raw.win)
-
-        winAudio.apply {
-            setMediaItem(MediaItem.fromUri(winUri))
-            prepare()
-        }
-
         binding.yellowPanda.visibility = View.VISIBLE
         binding.yellow.visibility = View.INVISIBLE
         binding.whitePanda.visibility = View.INVISIBLE
@@ -126,7 +115,7 @@ class LevelTenFragment : BaseFragment(R.layout.fragment_level_ten), View.OnTouch
         binding.next.visibility = View.VISIBLE
         binding.celebrate.visibility = View.VISIBLE
         binding.celebrate.playAnimation()
-        winAudio.play()
+        viewModel.playWin()
 
         if (viewModel.getScore() < 10) {
             viewModel.addScore()

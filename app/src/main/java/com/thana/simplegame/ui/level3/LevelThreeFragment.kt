@@ -26,9 +26,6 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
     private val binding by viewBinding(FragmentLevelThreeBinding::bind)
     private val viewModel: SharedViewModel by viewModels()
 
-    private lateinit var winAudio: ExoPlayer
-    private lateinit var loseAudio: ExoPlayer
-
     private var isExpanded = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,25 +69,6 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
         isExpanded = true
 
     }
-    private fun initAudio() {
-
-        winAudio = ExoPlayer.Builder(requireContext()).build()
-        loseAudio = ExoPlayer.Builder(requireContext()).build()
-
-        val winUri = RawResourceDataSource.buildRawResourceUri(R.raw.win)
-        val loseUri = RawResourceDataSource.buildRawResourceUri(R.raw.lose)
-
-        winAudio.apply {
-            setMediaItem(MediaItem.fromUri(winUri))
-            prepare()
-
-        }
-
-        loseAudio.apply {
-            setMediaItem(MediaItem.fromUri(loseUri))
-            prepare()
-        }
-    }
 
     private fun nextLevel() {
         val action = LevelThreeFragmentDirections.actionLevelThreeFragmentToLevelFourFragment()
@@ -117,7 +95,7 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
     private fun validateAnswer() {
 
         binding.submit.setOnClickListener {
-            initAudio()
+
             val input = binding.editText.text.toString().trim()
             if (input == "1") {
                 binding.right.visibility = View.VISIBLE
@@ -127,9 +105,7 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
                 binding.submit.isEnabled = false
                 binding.next.visibility = View.VISIBLE
 
-                if (::winAudio.isInitialized)
-                    winAudio.play()
-
+                viewModel.playWin()
                 if (viewModel.getScore() < 3) {
                     viewModel.addScore()
                 }
@@ -138,8 +114,7 @@ class LevelThreeFragment : BaseFragment(R.layout.fragment_level_three), View.OnT
                 binding.wrong.visibility = View.VISIBLE
                 binding.right.visibility = View.GONE
 
-                if (::loseAudio.isInitialized)
-                    loseAudio.play()
+                viewModel.playLose()
             }
             hideKeyboard()
         }

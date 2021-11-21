@@ -120,14 +120,6 @@ class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnT
 
     private fun correctAnswer(view: ImageView) {
 
-        val winAudio = ExoPlayer.Builder(requireContext()).build()
-
-        val winUri = RawResourceDataSource.buildRawResourceUri(R.raw.win)
-
-        winAudio.apply {
-            setMediaItem(MediaItem.fromUri(winUri))
-            prepare()
-        }
 
         view.visibility = View.VISIBLE
         view.setColorFilter(
@@ -138,7 +130,7 @@ class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnT
         binding.celebrate.visibility = View.VISIBLE
         binding.right.visibility = View.VISIBLE
         binding.celebrate.playAnimation()
-        winAudio.play()
+        viewModel.playWin()
 
         if (viewModel.getScore() < 7) {
             viewModel.addScore()
