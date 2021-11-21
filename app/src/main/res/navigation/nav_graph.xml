@@ -121,17 +121,17 @@
     </fragment>
     <fragment
         android:id="@+id/levelTenFragment"
-        android:name="com.thana.simplegame.LevelTenFragment"
+        android:name="com.thana.simplegame.ui.level10.LevelTenFragment"
         android:label="fragment_level_ten"
         tools:layout="@layout/fragment_level_ten" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.thana.simplegame.SettingsFragment"
+        android:name="com.thana.simplegame.ui.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.thana.simplegame.ProfileFragment"
+        android:name="com.thana.simplegame.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 

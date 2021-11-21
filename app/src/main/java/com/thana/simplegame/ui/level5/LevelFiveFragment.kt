@@ -125,14 +125,6 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
 
     private fun correctAnswer() {
 
-        val winAudio = ExoPlayer.Builder(requireContext()).build()
-
-        val winUri = RawResourceDataSource.buildRawResourceUri(R.raw.win)
-
-        winAudio.apply {
-            setMediaItem(MediaItem.fromUri(winUri))
-            prepare()
-        }
 
         binding.pancake.visibility = View.VISIBLE
         binding.food1.visibility = View.INVISIBLE
@@ -144,7 +136,7 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
         binding.next.visibility = View.VISIBLE
         binding.celebrate.visibility = View.VISIBLE
         binding.celebrate.playAnimation()
-        winAudio.play()
+        viewModel.playWin()
 
         if (viewModel.getScore() < 5) {
             viewModel.addScore()

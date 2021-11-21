@@ -2,6 +2,8 @@ package com.thana.simplegame.di
 
 import com.thana.simplegame.data.repository.sharedrepositoy.SharedRepository
 import com.thana.simplegame.data.repository.sharedrepositoy.SharedRepositoryImpl
+import com.thana.simplegame.data.repository.soundrepository.SoundRepository
+import com.thana.simplegame.data.repository.soundrepository.SoundRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,4 +17,9 @@ abstract class RepositoryModule {
     abstract fun provideSharedRepository(
         sharedRepositoryImpl: SharedRepositoryImpl
     ): SharedRepository
+
+    @Binds
+    abstract fun provideSoundRepository(
+        soundRepositoryImpl: SoundRepositoryImpl
+    ): SoundRepository
 }

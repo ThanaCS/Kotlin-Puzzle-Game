@@ -1,9 +1,11 @@
-package com.thana.simplegame
+package com.thana.simplegame.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.thana.simplegame.BuildConfig
+import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentProfileBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment

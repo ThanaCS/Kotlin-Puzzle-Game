@@ -25,8 +25,7 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
 
     private val binding by viewBinding(FragmentLevelOneBinding::bind)
     private var isExpanded = true
-    private lateinit var winAudio: ExoPlayer
-    private lateinit var loseAudio: ExoPlayer
+
     private val viewModel: SharedViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,26 +70,6 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
 
     }
 
-    private fun initAudio() {
-
-        winAudio = ExoPlayer.Builder(requireContext()).build()
-        loseAudio = ExoPlayer.Builder(requireContext()).build()
-
-        val winUri = RawResourceDataSource.buildRawResourceUri(R.raw.win)
-        val loseUri = RawResourceDataSource.buildRawResourceUri(R.raw.lose)
-
-        winAudio.apply {
-            setMediaItem(MediaItem.fromUri(winUri))
-            prepare()
-
-        }
-
-        loseAudio.apply {
-            setMediaItem(MediaItem.fromUri(loseUri))
-            prepare()
-        }
-    }
-
     private fun nextLevel() {
         val action = LevelOneFragmentDirections.actionLevelOneFragmentToLevelTwoFragment()
         findNavController().navigate(action)
@@ -119,7 +98,6 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
     private fun validateAnswer() {
 
         binding.submit.setOnClickListener {
-            initAudio()
             val input = binding.editText.text.toString().trim()
             if (input == "7") {
                 binding.right.visibility = View.VISIBLE
@@ -129,8 +107,7 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
                 binding.submit.isEnabled = false
                 binding.next.visibility = View.VISIBLE
 
-                if (::winAudio.isInitialized)
-                    winAudio.play()
+                viewModel.playWin()
 
                 if (viewModel.getScore() < 1) {
                     viewModel.addScore()
@@ -140,8 +117,7 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
                 binding.wrong.visibility = View.VISIBLE
                 binding.right.visibility = View.GONE
 
-                if (::loseAudio.isInitialized)
-                    loseAudio.play()
+                viewModel.playLose()
             }
             hideKeyboard()
         }
