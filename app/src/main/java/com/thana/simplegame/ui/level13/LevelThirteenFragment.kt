@@ -1,4 +1,4 @@
-package com.thana.simplegame
+package com.thana.simplegame.ui.level13
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentLevelThirteenBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment

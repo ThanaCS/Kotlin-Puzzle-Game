@@ -40,7 +40,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                 return viewModel.isLevelLocked(level)
             }
         })
-        adapter.setItems(levelList)
+        adapter.differ.submitList(levelList)
         binding.recyclerview.adapter = adapter
     }
 
