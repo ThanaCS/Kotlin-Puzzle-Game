@@ -15,7 +15,6 @@ class GameLevelsAdapter(private val clickListener: LevelClickListeners) :
     fun setItems(items: List<GameInfo>) {
         this.levelsList.clear()
         this.levelsList.addAll(items)
-        notifyDataSetChanged()
     }
 
     inner class LevelViewHolder(private val binding: LevelItemBinding) :
@@ -24,22 +23,17 @@ class GameLevelsAdapter(private val clickListener: LevelClickListeners) :
 
             binding.apply {
 
-                levelName.text =
-                    "${binding.root.context.getString(R.string.level)} ${gameInfo.level}"
+                levelName.text = "${binding.root.context.getString(R.string.level)} ${gameInfo.level}"
 
                 if (clickListener.isLevelLocked(gameInfo.level)) {
                     levelIcon.setColorFilter(R.color.gray)
                 } else {
                     root.setOnClickListener {
-
                         if (gameInfo.fragmentID != null)
                             clickListener.navigate(gameInfo.fragmentID)
                     }
                 }
-
-
             }
-
         }
     }
 

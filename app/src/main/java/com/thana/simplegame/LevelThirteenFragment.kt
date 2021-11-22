@@ -1,36 +1,39 @@
-package com.thana.simplegame.ui.level12
+package com.thana.simplegame
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.thana.simplegame.R
-import com.thana.simplegame.databinding.FragmentLevelTwelveBinding
+import com.thana.simplegame.databinding.FragmentLevelThirteenBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LevelTwelveFragment : BaseFragment(R.layout.fragment_level_twelve), View.OnTouchListener,
+class LevelThirteenFragment : BaseFragment(R.layout.fragment_level_thirteen), View.OnTouchListener,
     View.OnDragListener {
 
-    private val binding by viewBinding(FragmentLevelTwelveBinding::bind)
+    private val binding by viewBinding(FragmentLevelThirteenBinding::bind)
+
     private val viewModel: SharedViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setListeners()
-        showHint()
+
         binding.next.setOnClickListener {
             nextLevel()
         }
 
+        showHint()
     }
 
     private fun showHint() = if (viewModel.isExpanded) {
@@ -41,16 +44,15 @@ class LevelTwelveFragment : BaseFragment(R.layout.fragment_level_twelve), View.O
         binding.expand.setIconResource(R.drawable.ic_expand_arrow)
     }
 
-
     private fun nextLevel() {
-        val action =
-            LevelTwelveFragmentDirections.actionLevelTwelveFragmentToLevelThirteenFragment()
+
+        val action = LevelThirteenFragmentDirections.actionLevelThirteenFragmentToLevelFourteenFragment()
         findNavController().navigate(action)
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
-        binding.swipeText.setOnTouchListener(this)
+        binding.smallFire.setOnTouchListener(this)
         binding.area.setOnDragListener(this)
         binding.hintRoot.setOnClickListener {
             viewModel.isExpanded = !viewModel.isExpanded
@@ -62,48 +64,6 @@ class LevelTwelveFragment : BaseFragment(R.layout.fragment_level_twelve), View.O
         }
     }
 
-    private fun checkIfMixed(dragEvent: DragEvent, view: View) {
-
-        val correctAreaXStart = binding.correctArea.x
-        val correctAreaYStart = binding.correctArea.y
-
-        val correctAreaXEnd = correctAreaXStart + binding.correctArea.width
-        val correctAreaYEnd = correctAreaYStart + binding.correctArea.height
-
-        val textBallXStart = binding.swipeText.x
-        val textBallYStart = binding.swipeText.y
-
-        val textBallXEnd = textBallXStart + binding.swipeText.width
-        val textBallYEnd = textBallYStart + binding.swipeText.height
-
-
-        if (view.id == binding.correctArea.id ||
-            view.id == binding.swipeText.id
-        ) {
-            if (dragEvent.x in correctAreaXStart..correctAreaXEnd
-                && dragEvent.y in correctAreaYStart..correctAreaYEnd
-                && dragEvent.x in textBallXStart..textBallXEnd
-                && dragEvent.y in textBallYStart..textBallYEnd
-
-            ) {
-
-                correctAnswer()
-
-            }
-        }
-    }
-
-    private fun correctAnswer() {
-
-        binding.next.visibility = View.VISIBLE
-        binding.celebrate.visibility = View.VISIBLE
-        binding.right.visibility = View.VISIBLE
-        binding.celebrate.playAnimation()
-        viewModel.playWin()
-
-        viewModel.addScore(levelNumber = 12)
-
-    }
 
     override fun onDrag(layoutview: View, dragevent: DragEvent): Boolean {
 
@@ -112,33 +72,72 @@ class LevelTwelveFragment : BaseFragment(R.layout.fragment_level_twelve), View.O
         when (dragevent.action) {
 
             DragEvent.ACTION_DRAG_ENTERED -> {
-                view.alpha = 0.3f
                 view.visibility = View.INVISIBLE
-
             }
+
             DragEvent.ACTION_DROP -> {
                 view.alpha = 1.0f
-                val owner = binding.area
-                owner.removeView(view)
 
-                val container = layoutview as ConstraintLayout
+                validateAnswer(dragevent)
 
-                view.x = dragevent.x - (view.width / 2)
-                view.y = dragevent.y - (view.height / 2)
+                try {
+                    if (!wrongArea(dragevent)) {
+                        val owner = view.parent as ViewGroup
+                        owner.removeView(view)
+                        val container = layoutview as ConstraintLayout
+                        view.x = dragevent.x - (view.width / 2)
+                        view.y = dragevent.y - (view.height / 2)
+                        container.addView(view)
+                    }
+                } catch (e: Exception) {
+                    Log.d("Draging", "Something went wrong")
+                }
 
-                container.addView(view)
                 view.visibility = View.VISIBLE
-                checkIfMixed(dragevent, view)
-
             }
             DragEvent.ACTION_DRAG_EXITED -> {
                 view.alpha = 1.0f
                 view.visibility = View.VISIBLE
-
             }
 
         }
         return true
+    }
+
+
+    private fun validateAnswer(dragEvent: DragEvent) {
+
+        val fireXStart = binding.fireText.x
+        val fireYStart = binding.fireText.y
+
+        val faceXEnd = fireXStart + binding.fireText.width
+        val faceYEnd = fireYStart + binding.fireText.height
+
+        if (dragEvent.x in fireXStart..faceXEnd && dragEvent.y in fireYStart..faceYEnd) {
+            binding.right.visibility = View.VISIBLE
+            binding.next.visibility = View.VISIBLE
+            binding.celebrate.visibility = View.VISIBLE
+            binding.celebrate.playAnimation()
+            binding.fire.visibility = View.VISIBLE
+            viewModel.playWin()
+
+            viewModel.addScore(levelNumber = 13)
+        }
+
+    }
+
+    private fun wrongArea(dragEvent: DragEvent): Boolean {
+        val areaXStart = binding.untouchable.x
+        val areaYStart = binding.untouchable.y
+
+        val areaXEnd = areaXStart + binding.untouchable.width
+        val areaYEnd = areaYStart + binding.untouchable.height
+
+        if (dragEvent.x in areaXStart..areaXEnd && dragEvent.y in areaYStart..areaYEnd) {
+            return true
+        }
+
+        return false
     }
 
 
@@ -148,11 +147,11 @@ class LevelTwelveFragment : BaseFragment(R.layout.fragment_level_twelve), View.O
 
             view.performClick()
             val shadowBuilder = View.DragShadowBuilder(view)
-
             view.startDragAndDrop(null, shadowBuilder, view, 0)
 
             true
         } else {
+
             false
         }
     }

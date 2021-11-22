@@ -5,6 +5,7 @@ import com.thana.simplegame.data.repository.sharedrepositoy.SharedRepository
 import com.thana.simplegame.data.repository.soundrepository.SoundRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import com.thana.simplegame.data.model.levelList
 
 @HiltViewModel
 class SharedViewModel @Inject constructor(
@@ -27,4 +28,11 @@ class SharedViewModel @Inject constructor(
         soundRepository.playLose()
     }
 
+    fun isLevelLocked(level: Int) = level > getScore() + 1
+
+    fun getCoins() = getScore() / 2
+
+    fun getGems() = getScore() * 13
+
+    fun getProgress() = getScore() * 100 / levelList.last().level
 }

@@ -22,7 +22,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     private val viewModel: SharedViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         initAdapter()
         setScore()
         setGems()
@@ -38,22 +37,20 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             }
 
             override fun isLevelLocked(level: Int): Boolean {
-                return level > viewModel.getScore() + 1
+                return viewModel.isLevelLocked(level)
             }
-
         })
-
-        binding.recyclerview.adapter = adapter
         adapter.setItems(levelList)
+        binding.recyclerview.adapter = adapter
     }
 
     private fun setScore() {
-        val coins = viewModel.getScore()/2
+        val coins = viewModel.getCoins()
         binding.score.text = coins.toString()
     }
 
     private fun setGems() {
-        binding.gems.text = (viewModel.getScore() * 13).toString()
+        binding.gems.text = viewModel.getGems().toString()
     }
 
 }

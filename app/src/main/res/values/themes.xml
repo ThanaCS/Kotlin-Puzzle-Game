@@ -7,7 +7,7 @@
         <item name="colorOnPrimary">@color/light_background</item>
         <item name="colorAccent">@color/white</item>
 
-<!--        <item name="android:fontFamily">@font/inconsol</item>-->
+<!--        <item name="android:fontFamily">@font/pixel_font</item>-->
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
