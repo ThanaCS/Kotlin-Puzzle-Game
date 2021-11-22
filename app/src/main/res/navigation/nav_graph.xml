@@ -155,6 +155,26 @@
         android:id="@+id/levelTwelveFragment"
         android:name="com.thana.simplegame.ui.level12.LevelTwelveFragment"
         android:label="fragment_level_twelve"
-        tools:layout="@layout/fragment_level_twelve" />
+        tools:layout="@layout/fragment_level_twelve" >
+        <action
+            android:id="@+id/action_levelTwelveFragment_to_levelThirteenFragment"
+            app:destination="@id/levelThirteenFragment"
+            app:popUpTo="@id/levelTwelveFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelThirteenFragment"
+        android:name="com.thana.simplegame.LevelThirteenFragment"
+        android:label="fragment_level_thirteen"
+        tools:layout="@layout/fragment_level_thirteen" >
+        <action
+            android:id="@+id/action_levelThirteenFragment_to_levelFourteenFragment"
+            app:destination="@id/levelFourteenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelFourteenFragment"
+        android:name="com.thana.simplegame.LevelFourteenFragment"
+        android:label="fragment_level_fourteen"
+        tools:layout="@layout/fragment_level_fourteen" />
 
 </navigation>

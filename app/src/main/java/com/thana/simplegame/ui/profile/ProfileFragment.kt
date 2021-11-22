@@ -28,10 +28,9 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 
     private fun setProfileInfo() {
         val score = viewModel.getScore()
-        val coins = score / 2
-        val totalLevels = 25
-        binding.progressBar.progress = score * 100 / totalLevels
-        binding.gems.text = (score * 13).toString()
+        val coins = viewModel.getCoins()
+        binding.progressBar.progress = viewModel.getProgress()
+        binding.gems.text = viewModel.getGems().toString()
         binding.levelUnlockedNumber.text = score.toString()
         binding.score.text = coins.toString()
     }
@@ -43,10 +42,8 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
             shareIntent.type = "text/plain"
             var shareMessage = getString(R.string.share_text, score)
             shareMessage =
-                """
-                ${shareMessage}https://play.google.com/store/apps/details?id=
-                ${BuildConfig.APPLICATION_ID}
-                """.trimIndent()
+                "$shareMessage https://play.google.com/store/apps/details?id=" +
+                        BuildConfig.APPLICATION_ID
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
             startActivity(Intent.createChooser(shareIntent, null))
         } catch (e: Exception) {
