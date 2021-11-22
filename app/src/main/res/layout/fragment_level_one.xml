@@ -198,8 +198,8 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
                 android:backgroundTint="@color/app_theme"
+                android:visibility="invisible"
                 app:icon="@drawable/ic_next"
                 app:iconGravity="end"
                 app:iconTint="@color/white"
@@ -237,11 +237,11 @@
         android:id="@+id/celebrate"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:lottie_autoPlay="false"
-        android:visibility="gone"
         app:lottie_fileName="celebrate.json"
         app:lottie_loop="true" />
 
@@ -255,7 +255,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView">
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/hint_root"
@@ -282,20 +281,6 @@
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/hint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_marginTop="16dp"
-                android:padding="16dp"
-                android:text="@string/hint_level_one"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/expand"
                 style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
@@ -307,19 +292,22 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/collapse"
-                android:visibility="gone"
-                style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+            <TextView
+                android:id="@+id/hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:icon="@drawable/ic_collapse_arrow"
-                app:iconGravity="end"
-                app:iconTint="@color/white"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"
+                android:text="@string/hint_level_one"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

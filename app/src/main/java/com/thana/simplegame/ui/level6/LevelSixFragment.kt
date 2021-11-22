@@ -10,10 +10,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.upstream.RawResourceDataSource
-import com.thana.simplegame.R.*
+import com.thana.simplegame.R
+import com.thana.simplegame.R.color
+import com.thana.simplegame.R.layout
 import com.thana.simplegame.databinding.FragmentLevelSixBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
@@ -26,8 +25,6 @@ class LevelSixFragment : BaseFragment(layout.fragment_level_six), View.OnTouchLi
 
     private val binding by viewBinding(FragmentLevelSixBinding::bind)
     private val viewModel: SharedViewModel by viewModels()
-
-    private var isExpanded = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,6 +51,14 @@ class LevelSixFragment : BaseFragment(layout.fragment_level_six), View.OnTouchLi
         binding.ball4.setOnTouchListener(this)
         binding.ball5.setOnTouchListener(this)
         binding.area.setOnDragListener(this)
+        binding.hintRoot.setOnClickListener {
+            viewModel.isExpanded = !viewModel.isExpanded
+            showHint()
+        }
+        binding.expand.setOnClickListener {
+            viewModel.isExpanded = !viewModel.isExpanded
+            showHint()
+        }
 
     }
 
@@ -116,37 +121,15 @@ class LevelSixFragment : BaseFragment(layout.fragment_level_six), View.OnTouchLi
 
     }
 
-    private fun showHint() {
-
-        binding.hintRoot.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-        binding.expand.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-        binding.collapse.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-    }
-
-    private fun expand() {
-
+    private fun showHint() = if (viewModel.isExpanded) {
         binding.hint.visibility = View.VISIBLE
-        binding.collapse.visibility = View.VISIBLE
-        binding.expand.visibility = View.INVISIBLE
-        isExpanded = false
-    }
-
-    private fun collapse() {
+        binding.expand.setIconResource(R.drawable.ic_collapse_arrow)
+    } else {
         binding.hint.visibility = View.GONE
-        binding.collapse.visibility = View.INVISIBLE
-        binding.expand.visibility = View.VISIBLE
-        isExpanded = true
-
+        binding.expand.setIconResource(R.drawable.ic_expand_arrow)
     }
 
     private fun correctAnswer(view: ImageView) {
-
 
         binding.ball1.visibility = View.INVISIBLE
         binding.ball1.visibility = View.INVISIBLE
@@ -165,9 +148,7 @@ class LevelSixFragment : BaseFragment(layout.fragment_level_six), View.OnTouchLi
         binding.celebrate.playAnimation()
         viewModel.playWin()
 
-        if (viewModel.getScore() < 6) {
-            viewModel.addScore()
-        }
+        viewModel.addScore(levelNumber = 6)
 
     }
 

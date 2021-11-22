@@ -22,60 +22,53 @@
             android:layout_margin="16dp">
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/pink"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/circle"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                app:layout_constraintBottom_toBottomOf="@+id/yellow"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView4" />
+                app:layout_constraintTop_toTopOf="@+id/yellow" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/yellow"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/circle"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-                app:layout_constraintStart_toEndOf="@+id/imageView5"
-                app:layout_constraintTop_toTopOf="@+id/imageView3"
+                app:layout_constraintBottom_toBottomOf="@+id/blue"
+                app:layout_constraintStart_toEndOf="@+id/pink"
+                app:layout_constraintTop_toTopOf="@+id/blue"
                 app:tint="#FFEB3B" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/blue"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/circle"
                 app:layout_constraintBottom_toTopOf="@+id/swipe_text"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/yellow"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/blue" />
 
-            <com.google.android.material.slider.Slider
-                android:id="@+id/slider"
+            <ImageView
+                android:id="@+id/correct_area"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/white"
-                android:value="12.0"
-                android:valueFrom="0.0"
-                android:valueTo="100.0"
-                app:labelBehavior="gone"
+                android:layout_height="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/swipe_text" />
+                app:layout_constraintTop_toBottomOf="@+id/cat" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/next"
                 style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
                 android:backgroundTint="@color/app_theme"
+                android:visibility="invisible"
                 app:icon="@drawable/ic_next"
                 app:iconGravity="end"
                 app:iconTint="@color/white"
@@ -87,25 +80,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/question_level_two"
+                android:text="@string/question_level_twelve"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/wrong" />
-
-            <ImageView
-                android:id="@+id/wrong"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_wrong"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@+id/next"
-                app:layout_constraintEnd_toEndOf="@+id/next"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/next"
-                app:tint="@color/red" />
+                app:layout_constraintTop_toBottomOf="@+id/right" />
 
             <ImageView
                 android:id="@+id/right"
@@ -118,6 +99,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/next"
                 app:tint="@color/green" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/cat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/swipe_text"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="cat_above.json"
+                app:lottie_loop="true" />
+
+
+            <ImageView
+                android:id="@+id/brow_ball"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/circle"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/swipe_text"
+                app:tint="#614632" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -125,11 +133,11 @@
         android:id="@+id/celebrate"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:lottie_autoPlay="false"
-        android:visibility="gone"
         app:lottie_fileName="celebrate.json"
         app:lottie_loop="true" />
 
@@ -175,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:padding="16dp"
-                android:text="@string/hint_level_two"
+                android:text="@string/hint_level_twelve"
                 android:textColor="@color/white"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -198,6 +206,3 @@
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-

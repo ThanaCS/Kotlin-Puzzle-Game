@@ -2,15 +2,14 @@ package com.thana.simplegame.ui.level7
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.*
+import android.view.DragEvent
+import android.view.MotionEvent
+import android.view.View
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.upstream.RawResourceDataSource
 import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentLevelSevenBinding
 import com.thana.simplegame.ui.SharedViewModel
@@ -25,8 +24,6 @@ class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnT
     private val binding by viewBinding(FragmentLevelSevenBinding::bind)
     private val viewModel: SharedViewModel by viewModels()
 
-    private var isExpanded = true
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -37,6 +34,14 @@ class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnT
         }
 
     }
+    private fun showHint() = if (viewModel.isExpanded) {
+        binding.hint.visibility = View.VISIBLE
+        binding.expand.setIconResource(R.drawable.ic_collapse_arrow)
+    } else {
+        binding.hint.visibility = View.GONE
+        binding.expand.setIconResource(R.drawable.ic_expand_arrow)
+    }
+
 
     private fun nextLevel() {
         val action = LevelSevenFragmentDirections.actionLevelSevenFragmentToLevelEightFragment()
@@ -53,7 +58,14 @@ class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnT
         binding.ball4.setOnTouchListener(this)
         binding.ball5.setOnTouchListener(this)
         binding.area.setOnDragListener(this)
-
+        binding.hintRoot.setOnClickListener {
+            viewModel.isExpanded = !viewModel.isExpanded
+            showHint()
+        }
+        binding.expand.setOnClickListener {
+            viewModel.isExpanded = !viewModel.isExpanded
+            showHint()
+        }
     }
 
     private fun checkIfMixed(dragEvent: DragEvent, view: View) {
@@ -89,38 +101,7 @@ class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnT
 
     }
 
-    private fun showHint() {
-
-        binding.hintRoot.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-        binding.expand.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-        binding.collapse.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-    }
-
-    private fun expand() {
-
-        binding.hint.visibility = View.VISIBLE
-        binding.collapse.visibility = View.VISIBLE
-        binding.expand.visibility = View.INVISIBLE
-        isExpanded = false
-    }
-
-    private fun collapse() {
-        binding.hint.visibility = View.GONE
-        binding.collapse.visibility = View.INVISIBLE
-        binding.expand.visibility = View.VISIBLE
-        isExpanded = true
-
-    }
-
     private fun correctAnswer(view: ImageView) {
-
-
         view.visibility = View.VISIBLE
         view.setColorFilter(
             ContextCompat.getColor(requireContext(), R.color.green),
@@ -132,9 +113,7 @@ class LevelSevenFragment : BaseFragment(R.layout.fragment_level_seven), View.OnT
         binding.celebrate.playAnimation()
         viewModel.playWin()
 
-        if (viewModel.getScore() < 7) {
-            viewModel.addScore()
-        }
+        viewModel.addScore(levelNumber = 7)
 
     }
 

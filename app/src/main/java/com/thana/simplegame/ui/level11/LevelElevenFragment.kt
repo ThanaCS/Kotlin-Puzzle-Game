@@ -1,4 +1,4 @@
-package com.thana.simplegame.ui.level1
+package com.thana.simplegame.ui.level11
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,33 +8,28 @@ import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.exoplayer2.upstream.*
 import com.thana.simplegame.R
-import com.thana.simplegame.databinding.FragmentLevelOneBinding
+import com.thana.simplegame.databinding.FragmentLevelElevenBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
-import com.thana.simplegame.util.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouchListener,
+class LevelElevenFragment : BaseFragment(R.layout.fragment_level_eleven), View.OnTouchListener,
     View.OnDragListener {
 
-    private val binding by viewBinding(FragmentLevelOneBinding::bind)
+    private val binding by viewBinding(FragmentLevelElevenBinding::bind)
     private val viewModel: SharedViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setListeners()
+        showHint()
         binding.next.setOnClickListener {
             nextLevel()
         }
-
-        setListeners()
-        showHint()
-        validateAnswer()
-
     }
 
     private fun showHint() = if (viewModel.isExpanded) {
@@ -45,30 +40,18 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
         binding.expand.setIconResource(R.drawable.ic_expand_arrow)
     }
 
-
     private fun nextLevel() {
-        val action = LevelOneFragmentDirections.actionLevelOneFragmentToLevelTwoFragment()
+        val action = LevelElevenFragmentDirections.actionLevelElevenFragmentToLevelTwelveFragment()
         findNavController().navigate(action)
     }
 
+
     @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
-        binding.bee1.setOnTouchListener(this)
-        binding.bee2.setOnTouchListener(this)
-        binding.bee3.setOnTouchListener(this)
-        binding.bee4.setOnTouchListener(this)
-        binding.bee5.setOnTouchListener(this)
-        binding.bee6.setOnTouchListener(this)
-        binding.bee7.setOnTouchListener(this)
+
+        binding.baby.setOnTouchListener(this)
+        binding.lion.setOnTouchListener(this)
         binding.area.setOnDragListener(this)
-        binding.input.setOnDragListener { _, _ ->
-
-            return@setOnDragListener true
-        }
-        binding.editText.setOnDragListener { _, _ ->
-
-            return@setOnDragListener true
-        }
         binding.hintRoot.setOnClickListener {
             viewModel.isExpanded = !viewModel.isExpanded
             showHint()
@@ -79,32 +62,45 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
         }
     }
 
-    private fun validateAnswer() {
+    private fun checkIfTogether(dragEvent: DragEvent, view: View) {
 
-        binding.submit.setOnClickListener {
-            val input = binding.editText.text.toString().trim()
-            if (input == "7") {
-                binding.right.visibility = View.VISIBLE
-                binding.wrong.visibility = View.GONE
-                binding.celebrate.visibility = View.VISIBLE
-                binding.celebrate.playAnimation()
-                binding.submit.isEnabled = false
-                binding.next.visibility = View.VISIBLE
+        val babyXStart = binding.baby.x
+        val babyYStart = binding.baby.y
 
-                viewModel.playWin()
+        val babyXEnd = babyXStart + binding.baby.width
+        val babyYEnd = babyYStart + binding.baby.height
 
-                viewModel.addScore(levelNumber = 1)
+        val elephantXStart = binding.elephant.x
+        val elephantYStart = binding.elephant.y
 
-            } else {
-                binding.wrong.visibility = View.VISIBLE
-                binding.right.visibility = View.GONE
+        val elephantXEnd = elephantXStart + binding.elephant.width
+        val elephantYEnd = elephantYStart + binding.elephant.height
 
-                viewModel.playLose()
+
+        if (view.id == binding.baby.id || view.id == binding.elephant.id) {
+            if (dragEvent.x in babyXStart..babyXEnd
+                && dragEvent.y in babyYStart..babyYEnd
+                && dragEvent.x in elephantXStart..elephantXEnd
+                && dragEvent.y in elephantYStart..elephantYEnd
+
+            ) {
+                correctAnswer()
             }
-            hideKeyboard()
         }
     }
 
+
+    private fun correctAnswer() {
+
+        binding.right.visibility = View.VISIBLE
+        binding.next.visibility = View.VISIBLE
+        binding.celebrate.visibility = View.VISIBLE
+        binding.celebrate.playAnimation()
+        viewModel.playWin()
+
+        viewModel.addScore(levelNumber = 11)
+
+    }
 
     override fun onDrag(layoutview: View, dragevent: DragEvent): Boolean {
 
@@ -115,6 +111,7 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
             DragEvent.ACTION_DRAG_ENTERED -> {
                 view.alpha = 0.3f
                 view.visibility = View.INVISIBLE
+
             }
             DragEvent.ACTION_DROP -> {
                 view.alpha = 1.0f
@@ -125,9 +122,10 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
 
                 view.x = dragevent.x - (view.width / 2)
                 view.y = dragevent.y - (view.height / 2)
-
                 container.addView(view)
                 view.visibility = View.VISIBLE
+                checkIfTogether(dragevent, view)
+
             }
             DragEvent.ACTION_DRAG_EXITED -> {
                 view.alpha = 1.0f
@@ -151,7 +149,6 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
 
             true
         } else {
-
             false
         }
     }

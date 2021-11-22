@@ -4,9 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.upstream.RawResourceDataSource
 import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentLevelTwoBinding
 import com.thana.simplegame.ui.SharedViewModel
@@ -19,7 +16,6 @@ class LevelTwoFragment : BaseFragment(R.layout.fragment_level_two) {
 
     private val binding by viewBinding(FragmentLevelTwoBinding::bind)
     private val viewModel: SharedViewModel by viewModels()
-    private var isExpanded = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,39 +23,29 @@ class LevelTwoFragment : BaseFragment(R.layout.fragment_level_two) {
         binding.next.setOnClickListener {
             nextLevel()
         }
-
+        setListeners()
         showHint()
         validateAnswer()
 
     }
 
-    private fun showHint() {
-
+    private fun setListeners() {
         binding.hintRoot.setOnClickListener {
-            if (isExpanded) expand() else collapse()
+            viewModel.isExpanded = !viewModel.isExpanded
+            showHint()
         }
         binding.expand.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-        binding.collapse.setOnClickListener {
-            if (isExpanded) expand() else collapse()
+            viewModel.isExpanded = !viewModel.isExpanded
+            showHint()
         }
     }
 
-    private fun expand() {
-
+    private fun showHint() = if (viewModel.isExpanded) {
         binding.hint.visibility = View.VISIBLE
-        binding.collapse.visibility = View.VISIBLE
-        binding.expand.visibility = View.INVISIBLE
-        isExpanded = false
-    }
-
-    private fun collapse() {
+        binding.expand.setIconResource(R.drawable.ic_collapse_arrow)
+    } else {
         binding.hint.visibility = View.GONE
-        binding.collapse.visibility = View.INVISIBLE
-        binding.expand.visibility = View.VISIBLE
-        isExpanded = true
-
+        binding.expand.setIconResource(R.drawable.ic_expand_arrow)
     }
 
     private fun nextLevel() {
@@ -83,9 +69,7 @@ class LevelTwoFragment : BaseFragment(R.layout.fragment_level_two) {
                 slider.isEnabled = false
                 viewModel.playWin()
 
-                if (viewModel.getScore() < 2) {
-                    viewModel.addScore()
-                }
+                viewModel.addScore(levelNumber = 2)
 
             } else if (value > 50.0) {
 

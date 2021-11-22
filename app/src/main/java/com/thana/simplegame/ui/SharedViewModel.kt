@@ -1,40 +1,23 @@
 package com.thana.simplegame.ui
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.thana.simplegame.data.repository.sharedrepositoy.SharedRepository
 import com.thana.simplegame.data.repository.soundrepository.SoundRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 @HiltViewModel
 class SharedViewModel @Inject constructor(
     private val sharedRepository: SharedRepository,
     private val soundRepository: SoundRepository
-) :
-    ViewModel() {
+) : ViewModel() {
 
-    fun addScore() {
-        viewModelScope.launch {
-            sharedRepository.addScore()
-        }
-    }
-
-    fun setScore(value: Int) {
-        viewModelScope.launch {
-            sharedRepository.setScore(value)
-        }
-    }
+    var isExpanded = false
 
     fun getScore() = sharedRepository.getScore()
 
-    fun deletePref(key: String) {
-        viewModelScope.launch {
-            sharedRepository.deletePref(key)
-        }
-    }
+    fun addScore(levelNumber: Int) =
+        if (sharedRepository.getScore() < levelNumber) sharedRepository.addScore() else Unit
 
     fun playWin() {
         soundRepository.playWin()
@@ -43,6 +26,5 @@ class SharedViewModel @Inject constructor(
     fun playLose() {
         soundRepository.playLose()
     }
-
 
 }
