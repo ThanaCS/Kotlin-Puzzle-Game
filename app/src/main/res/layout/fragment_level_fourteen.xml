@@ -22,11 +22,12 @@
             android:layout_margin="16dp">
             <ImageView
                 android:id="@+id/plug"
-                android:visibility="gone"
                 android:layout_width="100dp"
                 android:layout_height="100sp"
+                android:visibility="gone"
                 android:src="@drawable/line"
                 android:rotation="60"
+                app:tint="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/controller"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="15dp"
                 android:text="_______"
-                android:textColor="@color/black"
+                android:textColor="@color/light_background"
                 android:textSize="35sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
