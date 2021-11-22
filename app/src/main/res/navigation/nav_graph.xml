@@ -123,7 +123,13 @@
         android:id="@+id/levelTenFragment"
         android:name="com.thana.simplegame.ui.level10.LevelTenFragment"
         android:label="fragment_level_ten"
-        tools:layout="@layout/fragment_level_ten" />
+        tools:layout="@layout/fragment_level_ten" >
+        <action
+            android:id="@+id/action_levelTenFragment_to_levelElevenFragment"
+            app:destination="@id/levelElevenFragment"
+            app:popUpTo="@id/levelTenFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.thana.simplegame.ui.settings.SettingsFragment"
@@ -134,5 +140,21 @@
         android:name="com.thana.simplegame.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/levelElevenFragment"
+        android:name="com.thana.simplegame.ui.level11.LevelElevenFragment"
+        android:label="fragment_level_eleven"
+        tools:layout="@layout/fragment_level_eleven" >
+        <action
+            android:id="@+id/action_levelElevenFragment_to_levelTwelveFragment"
+            app:destination="@id/levelTwelveFragment"
+            app:popUpTo="@id/levelElevenFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelTwelveFragment"
+        android:name="com.thana.simplegame.ui.level12.LevelTwelveFragment"
+        android:label="fragment_level_twelve"
+        tools:layout="@layout/fragment_level_twelve" />
 
 </navigation>

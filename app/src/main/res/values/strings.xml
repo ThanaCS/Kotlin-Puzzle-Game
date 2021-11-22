@@ -33,6 +33,12 @@
     //lvl nine
     <string name="question_level_ten">Find the yellow panda</string>
     <string name="hint_level_ten">Look for a yellow paint</string>
+    //lvl elven
+    <string name="question_level_eleven">Find the elephant\'s baby</string>
+    <string name="hint_level_eleven">The lion looks suspicious </string>
+    //lvl elven
+    <string name="question_level_twelve">Find the cat above this text</string>
+    <string name="hint_level_twelve">Move the text around</string>
     //profile
     <string name="share_text">\nI\'m in level %1d! \n check out this game and share your progress\n\n</string>
 

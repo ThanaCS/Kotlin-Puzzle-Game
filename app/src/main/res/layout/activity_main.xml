@@ -43,7 +43,7 @@
         android:layout_height="60dp"
         app:layout_anchor="@+id/bottomAppBar"
         app:layout_anchorGravity="top|center"
-        app:srcCompat="@drawable/ic_home"
+        app:srcCompat="@drawable/home_fab"
         app:tint="@color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

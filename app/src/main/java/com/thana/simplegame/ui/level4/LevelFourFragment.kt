@@ -10,16 +10,12 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.upstream.RawResourceDataSource
 import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentLevelFourBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.Exception
 
 @AndroidEntryPoint
 class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTouchListener,
@@ -28,8 +24,6 @@ class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTou
     private val binding by viewBinding(FragmentLevelFourBinding::bind)
 
     private val viewModel: SharedViewModel by viewModels()
-
-    private var isExpanded = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,36 +35,16 @@ class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTou
         }
 
         showHint()
-
-    }
-    private fun showHint() {
-
-        binding.hintRoot.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-        binding.expand.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-        binding.collapse.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
     }
 
-    private fun expand() {
-
+    private fun showHint() = if (viewModel.isExpanded) {
         binding.hint.visibility = View.VISIBLE
-        binding.collapse.visibility = View.VISIBLE
-        binding.expand.visibility = View.INVISIBLE
-        isExpanded = false
-    }
-
-    private fun collapse() {
+        binding.expand.setIconResource(R.drawable.ic_collapse_arrow)
+    } else {
         binding.hint.visibility = View.GONE
-        binding.collapse.visibility = View.INVISIBLE
-        binding.expand.visibility = View.VISIBLE
-        isExpanded = true
-
+        binding.expand.setIconResource(R.drawable.ic_expand_arrow)
     }
+
     private fun nextLevel() {
         val action = LevelFourFragmentDirections.actionLevelFourFragmentToLevelFiveFragment()
         findNavController().navigate(action)
@@ -81,6 +55,14 @@ class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTou
         binding.untouchable.isEnabled = false
         binding.water.setOnTouchListener(this)
         binding.area.setOnDragListener(this)
+        binding.hintRoot.setOnClickListener {
+            viewModel.isExpanded = !viewModel.isExpanded
+            showHint()
+        }
+        binding.expand.setOnClickListener {
+            viewModel.isExpanded = !viewModel.isExpanded
+            showHint()
+        }
     }
 
 
@@ -93,7 +75,7 @@ class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTou
             DragEvent.ACTION_DRAG_ENTERED -> {
                 view.visibility = View.INVISIBLE
             }
-            DragEvent.ACTION_DRAG_STARTED ->{
+            DragEvent.ACTION_DRAG_STARTED -> {
                 view.rotation = -60f
             }
 
@@ -111,8 +93,8 @@ class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTou
                         view.y = dragevent.y - (view.height / 2)
                         container.addView(view)
                     }
-                }catch (e:Exception){
-                    Log.d("Draging","Something went wrong")
+                } catch (e: Exception) {
+                    Log.d("Draging", "Something went wrong")
                 }
 
                 view.visibility = View.VISIBLE
@@ -140,7 +122,7 @@ class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTou
         return false
     }
 
-    private fun  validateAnswer(dragEvent: DragEvent) {
+    private fun validateAnswer(dragEvent: DragEvent) {
 
         val faceXStart = binding.waterText.x
         val faceYStart = binding.waterText.y
@@ -153,10 +135,10 @@ class LevelFourFragment : BaseFragment(R.layout.fragment_level_four), View.OnTou
             binding.next.visibility = View.VISIBLE
             binding.celebrate.visibility = View.VISIBLE
             binding.celebrate.playAnimation()
+
             viewModel.playWin()
-            if (viewModel.getScore() < 4) {
-                viewModel.addScore()
-            }
+
+            viewModel.addScore(levelNumber = 4)
         }
 
     }

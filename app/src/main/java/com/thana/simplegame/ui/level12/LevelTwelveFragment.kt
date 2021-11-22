@@ -1,4 +1,4 @@
-package com.thana.simplegame.ui.level1
+package com.thana.simplegame.ui.level12
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,33 +7,28 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.google.android.exoplayer2.upstream.*
 import com.thana.simplegame.R
-import com.thana.simplegame.databinding.FragmentLevelOneBinding
+import com.thana.simplegame.databinding.FragmentLevelTwelveBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
-import com.thana.simplegame.util.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouchListener,
+class LevelTwelveFragment : BaseFragment(R.layout.fragment_level_twelve), View.OnTouchListener,
     View.OnDragListener {
 
-    private val binding by viewBinding(FragmentLevelOneBinding::bind)
+    private val binding by viewBinding(FragmentLevelTwelveBinding::bind)
     private val viewModel: SharedViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setListeners()
+        showHint()
         binding.next.setOnClickListener {
             nextLevel()
         }
-
-        setListeners()
-        showHint()
-        validateAnswer()
 
     }
 
@@ -47,28 +42,13 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
 
 
     private fun nextLevel() {
-        val action = LevelOneFragmentDirections.actionLevelOneFragmentToLevelTwoFragment()
-        findNavController().navigate(action)
+
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
-        binding.bee1.setOnTouchListener(this)
-        binding.bee2.setOnTouchListener(this)
-        binding.bee3.setOnTouchListener(this)
-        binding.bee4.setOnTouchListener(this)
-        binding.bee5.setOnTouchListener(this)
-        binding.bee6.setOnTouchListener(this)
-        binding.bee7.setOnTouchListener(this)
+        binding.swipeText.setOnTouchListener(this)
         binding.area.setOnDragListener(this)
-        binding.input.setOnDragListener { _, _ ->
-
-            return@setOnDragListener true
-        }
-        binding.editText.setOnDragListener { _, _ ->
-
-            return@setOnDragListener true
-        }
         binding.hintRoot.setOnClickListener {
             viewModel.isExpanded = !viewModel.isExpanded
             showHint()
@@ -79,32 +59,48 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
         }
     }
 
-    private fun validateAnswer() {
+    private fun checkIfMixed(dragEvent: DragEvent, view: View) {
 
-        binding.submit.setOnClickListener {
-            val input = binding.editText.text.toString().trim()
-            if (input == "7") {
-                binding.right.visibility = View.VISIBLE
-                binding.wrong.visibility = View.GONE
-                binding.celebrate.visibility = View.VISIBLE
-                binding.celebrate.playAnimation()
-                binding.submit.isEnabled = false
-                binding.next.visibility = View.VISIBLE
+        val correctAreaXStart = binding.correctArea.x
+        val correctAreaYStart = binding.correctArea.y
 
-                viewModel.playWin()
+        val correctAreaXEnd = correctAreaXStart + binding.correctArea.width
+        val correctAreaYEnd = correctAreaYStart + binding.correctArea.height
 
-                viewModel.addScore(levelNumber = 1)
+        val textBallXStart = binding.swipeText.x
+        val textBallYStart = binding.swipeText.y
 
-            } else {
-                binding.wrong.visibility = View.VISIBLE
-                binding.right.visibility = View.GONE
+        val textBallXEnd = textBallXStart + binding.swipeText.width
+        val textBallYEnd = textBallYStart + binding.swipeText.height
 
-                viewModel.playLose()
+
+        if (view.id == binding.correctArea.id ||
+            view.id == binding.swipeText.id
+        ) {
+            if (dragEvent.x in correctAreaXStart..correctAreaXEnd
+                && dragEvent.y in correctAreaYStart..correctAreaYEnd
+                && dragEvent.x in textBallXStart..textBallXEnd
+                && dragEvent.y in textBallYStart..textBallYEnd
+
+            ) {
+
+                correctAnswer()
+
             }
-            hideKeyboard()
         }
     }
 
+    private fun correctAnswer() {
+
+        binding.next.visibility = View.VISIBLE
+        binding.celebrate.visibility = View.VISIBLE
+        binding.right.visibility = View.VISIBLE
+        binding.celebrate.playAnimation()
+        viewModel.playWin()
+
+        viewModel.addScore(levelNumber =12)
+
+    }
 
     override fun onDrag(layoutview: View, dragevent: DragEvent): Boolean {
 
@@ -115,6 +111,7 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
             DragEvent.ACTION_DRAG_ENTERED -> {
                 view.alpha = 0.3f
                 view.visibility = View.INVISIBLE
+
             }
             DragEvent.ACTION_DROP -> {
                 view.alpha = 1.0f
@@ -128,6 +125,8 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
 
                 container.addView(view)
                 view.visibility = View.VISIBLE
+                checkIfMixed(dragevent, view)
+
             }
             DragEvent.ACTION_DRAG_EXITED -> {
                 view.alpha = 1.0f
@@ -151,7 +150,6 @@ class LevelOneFragment : BaseFragment(R.layout.fragment_level_one), View.OnTouch
 
             true
         } else {
-
             false
         }
     }

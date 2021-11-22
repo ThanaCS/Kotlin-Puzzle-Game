@@ -8,9 +8,6 @@ import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.upstream.RawResourceDataSource
 import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentLevelFiveBinding
 import com.thana.simplegame.ui.SharedViewModel
@@ -25,8 +22,6 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
     private val binding by viewBinding(FragmentLevelFiveBinding::bind)
     private val viewModel: SharedViewModel by viewModels()
 
-    private var isExpanded = true
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -35,7 +30,14 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
         binding.next.setOnClickListener {
             nextLevel()
         }
+    }
 
+    private fun showHint() = if (viewModel.isExpanded) {
+        binding.hint.visibility = View.VISIBLE
+        binding.expand.setIconResource(R.drawable.ic_collapse_arrow)
+    } else {
+        binding.hint.visibility = View.GONE
+        binding.expand.setIconResource(R.drawable.ic_expand_arrow)
     }
 
     private fun nextLevel() {
@@ -53,7 +55,14 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
         binding.food2.setOnTouchListener(this)
         binding.flour.setOnTouchListener(this)
         binding.area.setOnDragListener(this)
-
+        binding.hintRoot.setOnClickListener {
+            viewModel.isExpanded = !viewModel.isExpanded
+            showHint()
+        }
+        binding.expand.setOnClickListener {
+            viewModel.isExpanded = !viewModel.isExpanded
+            showHint()
+        }
     }
 
     private fun checkIfMixed(dragEvent: DragEvent, view: View) {
@@ -94,37 +103,8 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
 
     }
 
-    private fun showHint() {
-
-        binding.hintRoot.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-        binding.expand.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-        binding.collapse.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-    }
-
-    private fun expand() {
-
-        binding.hint.visibility = View.VISIBLE
-        binding.collapse.visibility = View.VISIBLE
-        binding.expand.visibility = View.INVISIBLE
-        isExpanded = false
-    }
-
-    private fun collapse() {
-        binding.hint.visibility = View.GONE
-        binding.collapse.visibility = View.INVISIBLE
-        binding.expand.visibility = View.VISIBLE
-        isExpanded = true
-
-    }
 
     private fun correctAnswer() {
-
 
         binding.pancake.visibility = View.VISIBLE
         binding.food1.visibility = View.INVISIBLE
@@ -138,9 +118,7 @@ class LevelFiveFragment : BaseFragment(R.layout.fragment_level_five), View.OnTou
         binding.celebrate.playAnimation()
         viewModel.playWin()
 
-        if (viewModel.getScore() < 5) {
-            viewModel.addScore()
-        }
+        viewModel.addScore(levelNumber = 5)
 
     }
 

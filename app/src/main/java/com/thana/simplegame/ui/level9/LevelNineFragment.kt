@@ -4,15 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.upstream.RawResourceDataSource
 import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentLevelNineBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
-import com.thana.simplegame.ui.level6.LevelSixFragmentDirections
 import com.thana.simplegame.util.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class LevelNineFragment : BaseFragment(R.layout.fragment_level_nine) {
 
     private val binding by viewBinding(FragmentLevelNineBinding::bind)
-    private var isExpanded = true
     private val viewModel: SharedViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,46 +23,37 @@ class LevelNineFragment : BaseFragment(R.layout.fragment_level_nine) {
 
         showHint()
         validateAnswer()
+        setListeners()
 
         binding.next.setOnClickListener {
             nextLevel()
         }
     }
 
+    private fun showHint() = if (viewModel.isExpanded) {
+        binding.hint.visibility = View.VISIBLE
+        binding.expand.setIconResource(R.drawable.ic_collapse_arrow)
+    } else {
+        binding.hint.visibility = View.GONE
+        binding.expand.setIconResource(R.drawable.ic_expand_arrow)
+    }
+
+    private fun setListeners() {
+        binding.hintRoot.setOnClickListener {
+            viewModel.isExpanded = !viewModel.isExpanded
+            showHint()
+        }
+        binding.expand.setOnClickListener {
+            viewModel.isExpanded = !viewModel.isExpanded
+            showHint()
+        }
+
+    }
+
     private fun nextLevel() {
         val action = LevelNineFragmentDirections.actionLevelNineFragmentToLevelTenFragment()
         findNavController().navigate(action)
     }
-
-    private fun showHint() {
-
-        binding.hintRoot.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-        binding.expand.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-        binding.collapse.setOnClickListener {
-            if (isExpanded) expand() else collapse()
-        }
-    }
-
-    private fun expand() {
-
-        binding.hint.visibility = View.VISIBLE
-        binding.collapse.visibility = View.VISIBLE
-        binding.expand.visibility = View.INVISIBLE
-        isExpanded = false
-    }
-
-    private fun collapse() {
-        binding.hint.visibility = View.GONE
-        binding.collapse.visibility = View.INVISIBLE
-        binding.expand.visibility = View.VISIBLE
-        isExpanded = true
-
-    }
-
 
     private fun validateAnswer() {
 
@@ -83,9 +69,7 @@ class LevelNineFragment : BaseFragment(R.layout.fragment_level_nine) {
 
                 viewModel.playWin()
 
-                if (viewModel.getScore() < 9) {
-                    viewModel.addScore()
-                }
+                viewModel.addScore(levelNumber = 9)
 
             } else {
                 binding.wrong.visibility = View.VISIBLE
@@ -95,6 +79,4 @@ class LevelNineFragment : BaseFragment(R.layout.fragment_level_nine) {
             hideKeyboard()
         }
     }
-
-
 }
