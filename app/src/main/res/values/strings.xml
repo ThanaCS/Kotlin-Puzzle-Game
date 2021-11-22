@@ -45,6 +45,9 @@
     //lvl fourteen
     <string name="question_level_fourteen">Fix the controller</string>
     <string name="hint_level_fourteen">it\'s not plugged in </string>
+    //lvl fifteen
+    <string name="question_level_fifteen">Make a popcorn</string>
+    <string name="hint_level_fifteen">Find a lighter </string>
     //profile
     <string name="share_text">\nI\'m in level %1d! \n Check out this game and share your progress:\n\n</string>
 

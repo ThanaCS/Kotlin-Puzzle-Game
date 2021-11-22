@@ -107,7 +107,7 @@
                 android:layout_marginTop="12dp"
                 android:progress="1"
                 android:scaleY="5"
-                app:indicatorColor="@color/blue"
+                app:indicatorColor="#00BCD4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/progress_text"
                 app:trackColor="@color/app_theme" />

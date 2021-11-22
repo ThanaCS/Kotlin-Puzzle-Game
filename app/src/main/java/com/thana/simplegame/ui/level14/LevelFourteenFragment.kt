@@ -1,4 +1,4 @@
-package com.thana.simplegame
+package com.thana.simplegame.ui.level14
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,10 +7,13 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentLevelFourteenBinding
 import com.thana.simplegame.ui.SharedViewModel
 import com.thana.simplegame.ui.common.BaseFragment
 import com.thana.simplegame.ui.common.viewBinding
+import com.thana.simplegame.ui.level4.LevelFourFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,7 +42,9 @@ class LevelFourteenFragment : BaseFragment(R.layout.fragment_level_fourteen), Vi
     }
 
     private fun nextLevel() {
-
+        val action =
+            LevelFourteenFragmentDirections.actionLevelFourteenFragmentToLevelFifteenFragment()
+        findNavController().navigate(action)
     }
 
     @SuppressLint("ClickableViewAccessibility")

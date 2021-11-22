@@ -164,17 +164,30 @@
     </fragment>
     <fragment
         android:id="@+id/levelThirteenFragment"
-        android:name="com.thana.simplegame.LevelThirteenFragment"
+        android:name="com.thana.simplegame.ui.level13.LevelThirteenFragment"
         android:label="fragment_level_thirteen"
         tools:layout="@layout/fragment_level_thirteen" >
         <action
             android:id="@+id/action_levelThirteenFragment_to_levelFourteenFragment"
-            app:destination="@id/levelFourteenFragment" />
+            app:destination="@id/levelFourteenFragment"
+            app:popUpTo="@id/levelThirteenFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/levelFourteenFragment"
-        android:name="com.thana.simplegame.LevelFourteenFragment"
+        android:name="com.thana.simplegame.ui.level14.LevelFourteenFragment"
         android:label="fragment_level_fourteen"
-        tools:layout="@layout/fragment_level_fourteen" />
+        tools:layout="@layout/fragment_level_fourteen" >
+        <action
+            android:id="@+id/action_levelFourteenFragment_to_levelFifteenFragment"
+            app:destination="@id/levelFifteenFragment"
+            app:popUpTo="@id/levelFourteenFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelFifteenFragment"
+        android:name="com.thana.simplegame.ui.level15.LevelFifteenFragment"
+        android:label="fragment_level_fifteen"
+        tools:layout="@layout/fragment_level_fifteen" />
 
 </navigation>
