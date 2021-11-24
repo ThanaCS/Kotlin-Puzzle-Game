@@ -26,9 +26,6 @@ class LevelFifteenFragment : BaseFragment(R.layout.fragment_level_fifteen), View
 
         setListeners()
         showHint()
-        binding.next.setOnClickListener {
-            nextLevel()
-        }
 
     }
 
@@ -40,9 +37,6 @@ class LevelFifteenFragment : BaseFragment(R.layout.fragment_level_fifteen), View
         binding.expand.setIconResource(R.drawable.ic_expand_arrow)
     }
 
-    private fun nextLevel() {
-
-    }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
@@ -124,10 +118,9 @@ class LevelFifteenFragment : BaseFragment(R.layout.fragment_level_fifteen), View
 
     private fun correctAnswer() {
 
-        binding.lighter.visibility =View.GONE
-        binding.popcorn.visibility =View.VISIBLE
-        binding.corn.visibility =View.GONE
-        binding.next.visibility = View.VISIBLE
+        binding.lighter.visibility = View.GONE
+        binding.popcorn.visibility = View.VISIBLE
+        binding.corn.visibility = View.GONE
         binding.celebrate.visibility = View.VISIBLE
         binding.right.visibility = View.VISIBLE
         binding.celebrate.playAnimation()

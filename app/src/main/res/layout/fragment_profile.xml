@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
     android:id="@+id/layout"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.google.android.material.card.MaterialCardView
@@ -58,12 +58,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="8dp"
-                tool:text="100"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
                 app:layout_constraintEnd_toStartOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="@+id/imageView" />
+                app:layout_constraintTop_toTopOf="@+id/imageView"
+                tool:text="100" />
 
 
             <TextView
@@ -71,19 +71,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="8dp"
-                tool:text="10"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/level_unlocked"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/level_unlocked" />
+                app:layout_constraintTop_toTopOf="@+id/level_unlocked"
+                tool:text="10" />
 
             <TextView
                 android:id="@+id/level_unlocked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Levels Unlocked:"
+                android:text="@string/levels_unlocked"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Your progress:"
+                android:text="@string/your_progress"
                 android:textColor="@color/light_background"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +107,7 @@
                 android:layout_marginTop="12dp"
                 android:progress="1"
                 android:scaleY="5"
-                app:indicatorColor="#00BCD4"
+                app:indicatorColor="#D356C6"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/progress_text"
                 app:trackColor="@color/app_theme" />
@@ -129,7 +129,7 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Share Progress"
+                android:text="@string/share_progress"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"

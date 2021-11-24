@@ -66,7 +66,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/next" />
 
-
             <ImageButton
                 android:id="@+id/submit"
                 style="@style/Button3D"
@@ -75,7 +74,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
 
             <TextView
                 android:id="@+id/textView1"
@@ -136,8 +134,8 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
                 android:backgroundTint="@color/app_theme"
+                android:visibility="invisible"
                 app:icon="@drawable/ic_next"
                 app:iconGravity="end"
                 app:iconTint="@color/white"
@@ -175,11 +173,11 @@
         android:id="@+id/celebrate"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:lottie_autoPlay="false"
-        android:visibility="gone"
         app:lottie_fileName="celebrate.json"
         app:lottie_loop="true" />
 
@@ -196,8 +194,8 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
             android:id="@+id/hint_root"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -224,11 +222,11 @@
                 android:id="@+id/hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_marginTop="16dp"
                 android:padding="16dp"
                 android:text="@string/hint_level_nine"
                 android:textColor="@color/white"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

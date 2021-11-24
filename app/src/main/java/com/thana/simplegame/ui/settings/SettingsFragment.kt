@@ -1,60 +1,102 @@
 package com.thana.simplegame.ui.settings
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import com.google.android.play.core.review.ReviewManagerFactory
+import com.thana.simplegame.BuildConfig
 import com.thana.simplegame.R
+import com.thana.simplegame.databinding.FragmentSettingsBinding
+import com.thana.simplegame.ui.common.BaseFragment
+import com.thana.simplegame.ui.common.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+@AndroidEntryPoint
+class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SettingsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class SettingsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val binding by viewBinding(FragmentSettingsBinding::bind)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setListeners()
+
+    }
+
+    private fun setListeners() {
+        binding.rate.setOnClickListener { inAppReview() }
+        binding.share.setOnClickListener { share() }
+        binding.contact.setOnClickListener { contact() }
+        binding.help.setOnClickListener { help() }
+    }
+
+    private fun share() {
+        try {
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                val shareMessage =
+                    "https://play.google.com/store/apps/details?id=" +
+                            BuildConfig.APPLICATION_ID
+                putExtra(Intent.EXTRA_TEXT, shareMessage)
+            }
+            startActivity(Intent.createChooser(intent, null))
+
+        } catch (e: Exception) {
+
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+    private fun contact() {
+        try {
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                putExtra(Intent.EXTRA_EMAIL, arrayOf("Thana_CS@hotmail.com"))
+                putExtra(Intent.EXTRA_SUBJECT, "Contact Developer")
+                type = "message/rfc822"
+            }
+
+            startActivity(Intent.createChooser(intent, "Contact Developer"))
+        } catch (e: Exception) {
+
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SettingsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SettingsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun help() {
+        try {
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                putExtra(Intent.EXTRA_EMAIL, arrayOf("Thana_CS@hotmail.com"))
+                putExtra(Intent.EXTRA_SUBJECT, "Help/Suggestion")
+                type = "message/rfc822"
             }
+
+            startActivity(Intent.createChooser(intent, "Help/Suggestion"))
+        } catch (e: Exception) {
+
+        }
+    }
+
+    private fun rateApp() {
+        try {
+            val uri = Uri.parse("market://details?id=${BuildConfig.APPLICATION_ID}")
+            val myAppLinkToMarket = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(myAppLinkToMarket)
+        } catch (e: Exception) {
+        }
+    }
+
+    private fun inAppReview() {
+        val reviewManager = ReviewManagerFactory.create(requireContext())
+        val requestReviewFlow = reviewManager.requestReviewFlow()
+        requestReviewFlow.addOnCompleteListener { request ->
+            if (request.isSuccessful) {
+                val reviewInfo = request.result
+                val flow = reviewManager.launchReviewFlow(requireActivity(), reviewInfo)
+                flow.addOnCompleteListener {
+
+                }
+            } else {
+                rateApp()
+            }
+        }
     }
 }
