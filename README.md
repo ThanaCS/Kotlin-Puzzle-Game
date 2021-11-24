@@ -1,4 +1,4 @@
-# Simple Game 
+# Puzzle game
 This is a puzzle game made with kotlin with more than 10 levels. 
 
 ## Game Images
