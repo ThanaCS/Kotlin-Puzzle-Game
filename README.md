@@ -1,5 +1,5 @@
 # Puzzle Game
-This is a puzzle game made with kotlin with more than 10 levels. 
+This is a simple puzzle game made with kotlin with more than 10 levels. 
 
 ## Game Images
 <div style="display:grid;">
