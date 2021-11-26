@@ -1,5 +1,8 @@
 # Puzzle Game
-This is a simple puzzle game made with kotlin with more than 10 levels. 
+This is a hyper-casual puzzle game made with kotlin with more than 10 levels. 
+
+## Preview
+<img src="https://i.ibb.co/jhNrDxf/Group-1.png" width="100%">
 
 ## Game Images
 <div style="display:grid;">
