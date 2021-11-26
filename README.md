@@ -2,7 +2,7 @@
 This is a hyper-casual puzzle game made with kotlin with more than 10 levels. 
 
 ## Preview
-<img src="https://i.ibb.co/jhNrDxf/Group-1.png" width="100%">
+<img src="https://i.ibb.co/JkdqcWH/Group-1-1.png" width="100%">
 
 ## Game Images
 <div style="display:grid;">
