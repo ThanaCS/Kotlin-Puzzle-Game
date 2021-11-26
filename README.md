@@ -1,5 +1,5 @@
-# Puzzle Game
-This is a hyper-casual puzzle game made with kotlin with more than 10 levels. 
+# Puzz
+Puzz is a hyper-casual puzzle game made with kotlin with more than 10 levels. 
 
 ## Preview
 <img src="https://i.ibb.co/JkdqcWH/Group-1-1.png" width="100%">
