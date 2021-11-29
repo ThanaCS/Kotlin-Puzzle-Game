@@ -1,6 +1,7 @@
-# Puzz
-Puzz is a hyper-casual puzzle game made with kotlin with more than 10 levels. 
-
+# Puzzles
+Puzzles is a hyper-casual puzzle game made with kotlin with more than 10 levels.<br>
+<br> <a href='https://play.google.com/store/apps/details?id=com.thana.simplegame'><img alt='Get it on Google Play' 
+src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='100px'/></a>
 ## Preview
 <img src="https://i.ibb.co/JkdqcWH/Group-1-1.png" width="100%">
 <img src="https://i.ibb.co/9V7JjcM/Group-1.png" width="100%">
