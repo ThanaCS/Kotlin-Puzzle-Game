@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Puzzles</string>
+    <string name="app_name" translatable="false">PUZZ</string>
     <string name="answer">A N S W E R</string>
     <string name="hint">HINT</string>
     <string name="level">Level </string>

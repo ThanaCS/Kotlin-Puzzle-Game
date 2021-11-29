@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import com.google.android.play.core.review.ReviewManagerFactory
 import com.thana.simplegame.BuildConfig
 import com.thana.simplegame.R
 import com.thana.simplegame.databinding.FragmentSettingsBinding
@@ -25,7 +24,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     }
 
     private fun setListeners() {
-        binding.rate.setOnClickListener { inAppReview() }
+        binding.rate.setOnClickListener { rateApp() }
         binding.share.setOnClickListener { share() }
         binding.contact.setOnClickListener { contact() }
         binding.help.setOnClickListener { help() }
@@ -76,27 +75,9 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     }
 
     private fun rateApp() {
-        try {
-            val uri = Uri.parse("market://details?id=${BuildConfig.APPLICATION_ID}")
-            val myAppLinkToMarket = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(myAppLinkToMarket)
-        } catch (e: Exception) {
-        }
-    }
+        val uri = Uri.parse("market://details?id=${BuildConfig.APPLICATION_ID}")
+        val myAppLinkToMarket = Intent(Intent.ACTION_VIEW, uri)
+        startActivity(myAppLinkToMarket)
 
-    private fun inAppReview() {
-        val reviewManager = ReviewManagerFactory.create(requireContext())
-        val requestReviewFlow = reviewManager.requestReviewFlow()
-        requestReviewFlow.addOnCompleteListener { request ->
-            if (request.isSuccessful) {
-                val reviewInfo = request.result
-                val flow = reviewManager.launchReviewFlow(requireActivity(), reviewInfo)
-                flow.addOnCompleteListener {
-
-                }
-            } else {
-                rateApp()
-            }
-        }
     }
 }
