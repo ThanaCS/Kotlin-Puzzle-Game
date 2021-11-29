@@ -121,7 +121,7 @@
                 app:layout_constraintHorizontal_bias="0.513"
                 app:layout_constraintStart_toStartOf="@+id/share"
                 app:layout_constraintTop_toTopOf="@+id/share"
-                app:layout_constraintVertical_bias="0.454" />
+                app:layout_constraintVertical_bias="0.393" />
 
             <TextView
                 android:id="@+id/help_text"
@@ -135,7 +135,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/help"
                 app:layout_constraintStart_toStartOf="@+id/help"
                 app:layout_constraintTop_toTopOf="@+id/help"
-                app:layout_constraintVertical_bias="0.454" />
+                app:layout_constraintVertical_bias="0.393" />
 
             <ImageView
                 android:id="@+id/imageView7"
