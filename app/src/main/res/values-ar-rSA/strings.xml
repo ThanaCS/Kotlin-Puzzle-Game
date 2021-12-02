@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PUZZ</string>
+    <string name="answer">الجواب</string>
+    <string name="hint">تلميح</string>
+    <string name="level">مرحلة  </string>
+    //lvl one
+    <string name="question_level_one">كم عدد النحل هنا؟</string>
+    <string name="hint_level_one">هل حاولت لمس النحل؟ يبدو أنهم قد يلدغوا …</string>
+    //lvl two
+    <string name="question_level_two">اسحب لليسار</string>
+    <string name="hint_level_two">ربما عليك القراءة بتمعن</string>
+    //lvl three
+    <string name="question_level_three">كم عدد الكيك هنا؟</string>
+    <string name="hint_level_three">الديناصور يحب الكيك !!</string>
+    //lvl four
+    <string name="question_level_four">اسقي "النبتة"</string>
+    <string name="hint_level_four">اسقي النص</string>
+    //lvl five
+    <string name="question_level_five">اين الفطيرة؟</string>
+    <string name="hint_level_five">ربما يجب عليك تعلم الطبخ</string>
+    //lvl six
+    <string name="question_level_six">ابحث عن الكرة البنية</string>
+    <string name="hint_level_six">جرب مزج الألوان</string>
+    //lvl seven
+    <string name="question_level_seven">ابحث عن الكرة الخضراء</string>
+    <string name="hint_level_seven">جرب مزج الألوان</string>
+    //lvl eight
+    <string name="question_level_eight">ابحث عن اللون الأبيض</string>
+    <string name="hint_level_eight">ابحث عن اي شيء لونه ابيض لا يجب ان يكون كرة</string>
+    //lvl nine
+    <string name="question_level_nine">اوجد الفروقات</string>
+    <string name="hint_level_nine">هذا صعب جدا! يبدون متماثلين</string>
+    //lvl nine
+    <string name="question_level_ten">ابحث عن الباندا الصفراء</string>
+    <string name="hint_level_ten">ابحث عن طلاء أصفر</string>
+    //lvl elven
+    <string name="question_level_eleven">ابحث عن طفل الفيل</string>
+    <string name="hint_level_eleven">هذا الاسد يبدو مريب </string>
+    //lvl twelve
+    <string name="question_level_twelve">احبث عن القط فوق هذا النص</string>
+    <string name="hint_level_twelve">حرك النص</string>
+    //lvl thirteen
+    <string name="question_level_thirteen">احرق كل شيء</string>
+    <string name="hint_level_thirteen">احرق \"كل شيء\"</string>
+    //lvl fourteen
+    <string name="question_level_fourteen">اصلح اليد</string>
+    <string name="hint_level_fourteen">لم يتم توصيلها </string>
+    //lvl fifteen
+    <string name="question_level_fifteen">اصنع فشارًا</string>
+    <string name="hint_level_fifteen">ابحث عن ولاعة</string>
+    //profile
+    <string name="share_text">انا في مستوى %1d! حمل هذه اللعبة وشارك تقدمك\n\n</string>
+
+    <string name="share_progress">مشاركة التقدم</string>
+    <string name="levels_unlocked">المراحل المفتوحة</string>
+    <string name="your_progress">تقدمك</string>
+    //settings
+    <string name="rate_us">قيم التطبيق</string>
+    <string name="contact">تواصل</string>
+    <string name="help">مساعدة</string>
+    <string name="share">مشاركة</string>
+</resources>
